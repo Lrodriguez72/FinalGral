@@ -3,7 +3,8 @@ import { CursosService } from './services/cursos.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { Curso } from './models';
 import { MatDialog } from '@angular/material/dialog';
-import { AbmAlumnosComponent } from '../alumnos/abm-alumnos/abm-alumnos.component';
+import { AbmCursosComponent } from './components/abm-cursos/abm-cursos.component';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-cursos',
@@ -11,7 +12,7 @@ import { AbmAlumnosComponent } from '../alumnos/abm-alumnos/abm-alumnos.componen
   styleUrls: ['./cursos.component.scss'],
 })
 export class CursosComponent implements OnInit {
-  dataSource = new MatTableDataSource();
+  dataSource = new MatTableDataSource<Curso>();
 
   displayedColumns = [
     'id',
@@ -25,10 +26,17 @@ export class CursosComponent implements OnInit {
 
   constructor(
     private cursosService: CursosService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private matDialog: MatDialog,
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private alumnosService: CursosService
   ) {}
 
   ngOnInit(): void {
+    //lo primero es suscribirse a los cambios que ocurran con el Observable
+    //así, al mantenerse activa la suscripción, cada vez que ocurra un cambio, como ABM, del lado del servicio
+    //voy a recibir la emisión del nuevo valor
     this.cursosService.obtenerCursos().subscribe({
       next: (cursos) => {
         this.dataSource.data = cursos;
@@ -37,7 +45,29 @@ export class CursosComponent implements OnInit {
   }
 
   crearCurso(): void {
-    this.dialog.open(AbmAlumnosComponent);
+    //en el crear no envío data
+
+    //abre el diálogo
+    const dialog = this.matDialog.open(AbmCursosComponent);
+
+    //el afterClosed es un Observable, por lo tanto, me suscribo
+
+    dialog.afterClosed().subscribe((valor) => {
+      //el valor permite agregar el curso en el Servicio
+      //verifico que el form contenga un valor, que no haya sido cancelado
+      if (valor) {
+        this.dataSource.data = [
+          ...this.dataSource.data,
+          // AGREGANDO NUEVO ELEMENTO:
+          {
+            ...valor, // { nombre: 'xxxxxx', apellido: 'xxxxx' }
+            fecha_inicio: new Date(),
+            fecha_fin: new Date(),
+            id: this.dataSource.data.length + 1,
+          },
+        ];
+      }
+    });
   }
 
   aplicarFiltros(ev: Event): void {}
@@ -46,5 +76,21 @@ export class CursosComponent implements OnInit {
 
   eliminarCurso(curso: Curso): void {}
 
-  editarCurso(curso: Curso): void {}
+  editarCurso(curso: Curso): void {
+    {
+      const dialog = this.dialog.open(AbmCursosComponent, {
+        //en editar envío data
+        //así al recibirlo, pregunto si hay data
+        data: {
+          curso,
+        },
+      });
+      //me suscribo y si hay valor, llamo al editar del servicio
+      dialog.afterClosed().subscribe((formValue) => {
+        if (formValue) {
+          this.cursosService.editarCurso(curso.id, formValue);
+        }
+      });
+    }
+  }
 }

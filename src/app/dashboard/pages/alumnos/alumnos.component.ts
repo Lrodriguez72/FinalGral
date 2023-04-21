@@ -15,14 +15,19 @@ export interface Alumno {
 @Component({
   selector: 'app-tablas',
   templateUrl: './alumnos.component.html',
-  styleUrls: ['./alumnos.component.scss']
+  styleUrls: ['./alumnos.component.scss'],
 })
 export class AlumnosComponent {
-
-
   dataSource = new MatTableDataSource<Alumno>();
 
-  displayedColumns: string[] = ['id', 'nombreCompleto', 'fecha_registro', 'ver_detalle', 'eliminar', 'editar'];
+  displayedColumns: string[] = [
+    'id',
+    'nombreCompleto',
+    'fecha_registro',
+    'ver_detalle',
+    'eliminar',
+    'editar',
+  ];
 
   aplicarFiltros(ev: Event): void {
     const inputValue = (ev.target as HTMLInputElement)?.value;
@@ -33,12 +38,11 @@ export class AlumnosComponent {
     private matDialog: MatDialog,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private alumnosService: AlumnosService,
+    private alumnosService: AlumnosService
   ) {
-    this.alumnosService.obtenerAlumnos()
-      .subscribe((alumnos) => {
-        this.dataSource.data = alumnos;
-      })
+    this.alumnosService.obtenerAlumnos().subscribe((alumnos) => {
+      this.dataSource.data = alumnos;
+    });
   }
 
   irAlDetalle(alumnoId: number): void {
@@ -48,7 +52,7 @@ export class AlumnosComponent {
   }
 
   crearAlumno(): void {
-    const dialog = this.matDialog.open(AbmAlumnosComponent)
+    const dialog = this.matDialog.open(AbmAlumnosComponent);
     dialog.afterClosed().subscribe((valor) => {
       if (valor) {
         this.dataSource.data = [
@@ -58,33 +62,32 @@ export class AlumnosComponent {
             ...valor, // { nombre: 'xxxxxx', apellido: 'xxxxx' }
             fecha_registro: new Date(),
             id: this.dataSource.data.length + 1,
-          }
+          },
         ];
       }
-    })
+    });
   }
-
 
   eliminarAlumno(alumnoParaEliminar: Alumno): void {
     this.dataSource.data = this.dataSource.data.filter(
-      (alumnoActual) => alumnoActual.id !== alumnoParaEliminar.id,
+      (alumnoActual) => alumnoActual.id !== alumnoParaEliminar.id
     );
   }
 
   editarAlumno(alumnoParaEditar: Alumno): void {
     const dialog = this.matDialog.open(AbmAlumnosComponent, {
       data: {
-        alumnoParaEditar
-      }
+        alumnoParaEditar,
+      },
     });
     dialog.afterClosed().subscribe((valorDelFormulario) => {
       if (valorDelFormulario) {
-        this.dataSource.data = this.dataSource.data.map(
-          (alumnoActual) => alumnoActual.id === alumnoParaEditar.id
-            ? ({ ...alumnoActual, ...valorDelFormulario}) // { nombre: 'xxxxxx', apellido: 'xxxxx' }
-            : alumnoActual,
+        this.dataSource.data = this.dataSource.data.map((alumnoActual) =>
+          alumnoActual.id === alumnoParaEditar.id
+            ? { ...alumnoActual, ...valorDelFormulario } // { nombre: 'xxxxxx', apellido: 'xxxxx' }
+            : alumnoActual
         );
       }
-    })
+    });
   }
 }

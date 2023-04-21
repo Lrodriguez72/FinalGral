@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, take } from 'rxjs';
-import { CrearCursoPayload, Curso } from '../models';
+import { BehaviorSubject, map, Observable, take } from 'rxjs';
+import { CrearCursoPayload } from '../models';
+import { Curso } from '../models';
 
 const CURSOS_MOCKS: Curso[] = [
   {
@@ -27,9 +28,7 @@ const CURSOS_MOCKS: Curso[] = [
   providedIn: 'root',
 })
 export class CursosService {
-  private cursos$ = new BehaviorSubject<Curso[]>(
-    []
-  );
+  private cursos$ = new BehaviorSubject<Curso[]>([]);
 
   constructor() {}
 
@@ -38,28 +37,56 @@ export class CursosService {
     return this.cursos$.asObservable();
   }
 
-  crearCurso(payload: CrearCursoPayload): Observable<Curso[]> {
-    this.cursos$
-      .pipe(
-        take(1)
-      )
-      .subscribe({
-        next: (cursos) => {
-          this.cursos$.next([
-            ...cursos,
-            {
-              id: cursos.length + 1,
-              ...payload,
-            },
-          ]);
-        },
-        complete: () => {},
-        error: () => {}
-      });
+  obtenerCursoPorId(id: number): Observable<Curso | undefined> {
+    return this.cursos$
+      .asObservable()
+      .pipe(map((Cursos) => Cursos.find((a) => a.id === id)));
+  }
 
-      // then => next
-      // catch => error
-      // finally => complete
+  crearCurso(payload: CrearCursoPayload): Observable<Curso[]> {
+    this.cursos$.pipe(take(1)).subscribe({
+      next: (cursos) => {
+        this.cursos$.next([
+          ...cursos,
+          {
+            id: cursos.length + 1,
+            ...payload,
+          },
+        ]);
+      },
+      complete: () => {},
+      error: () => {},
+    });
+
+    // then => next
+    // catch => error
+    // finally => complete
+
+    return this.cursos$.asObservable();
+  }
+
+  editarCurso(
+    cursoId: number,
+    actualizacion: Partial<Curso>
+  ): Observable<Curso[]> {
+    this.cursos$.pipe(take(1)).subscribe({
+      next: (cursos) => {
+        const cursosActualizados = cursos.map((curso) => {
+          if (curso.id === cursoId) {
+            return {
+              ...curso,
+              ...actualizacion,
+            };
+          } else {
+            return curso;
+          }
+        });
+
+        this.cursos$.next(cursosActualizados);
+      },
+      //complete: () => {},
+      //error: () => {}
+    });
 
     return this.cursos$.asObservable();
   }
