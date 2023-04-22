@@ -1,11 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { CursosService } from './services/cursos.service';
 import { MatTableDataSource } from '@angular/material/table';
-import { Curso } from './models';
+//import { Curso } from './models';
 import { MatDialog } from '@angular/material/dialog';
-import { AbmCursosComponent } from './components/abm-cursos/abm-cursos.component';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AbmCursosComponent } from './abm-cursos/abm-cursos.component';
 
+export interface Curso {
+  id: number;
+  nombre: string;
+  fecha_inicio: Date;
+  fecha_fin: Date;
+}
 @Component({
   selector: 'app-cursos',
   templateUrl: './cursos.component.html',
@@ -25,13 +31,15 @@ export class CursosComponent implements OnInit {
   ];
 
   constructor(
-    private cursosService: CursosService,
-    private dialog: MatDialog,
+  
     private matDialog: MatDialog,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private alumnosService: CursosService
-  ) {}
+    private cursosService: CursosService,
+  ) {
+    this.cursosService.obtenerCursos().subscribe((cursos)) =>
+    this.dataSource.data = cursos;
+  }
 
   ngOnInit(): void {
     //lo primero es suscribirse a los cambios que ocurran con el Observable
@@ -60,7 +68,7 @@ export class CursosComponent implements OnInit {
           ...this.dataSource.data,
           // AGREGANDO NUEVO ELEMENTO:
           {
-            ...valor, // { nombre: 'xxxxxx', apellido: 'xxxxx' }
+            ...valor, // { nombre: 'xxxxxx', fecha_inicio: 'xxxxx' }
             fecha_inicio: new Date(),
             fecha_fin: new Date(),
             id: this.dataSource.data.length + 1,
@@ -76,19 +84,19 @@ export class CursosComponent implements OnInit {
 
   eliminarCurso(curso: Curso): void {}
 
-  editarCurso(curso: Curso): void {
+  editarCurso(cursoParaEditar: Curso): void {
     {
-      const dialog = this.dialog.open(AbmCursosComponent, {
+      const dialog = this.matDialog.open(AbmCursosComponent, {
         //en editar envío data
         //así al recibirlo, pregunto si hay data
         data: {
-          curso,
+          cursoParaEditar,
         },
       });
       //me suscribo y si hay valor, llamo al editar del servicio
-      dialog.afterClosed().subscribe((formValue) => {
-        if (formValue) {
-          this.cursosService.editarCurso(curso.id, formValue);
+      dialog.afterClosed().subscribe((valorDelFormulario) => {
+        if (valorDelFormulario) {
+          this.cursosService.editarCurso(cursoParaEditar.id, valorDelFormulario);
         }
       });
     }

@@ -6,46 +6,48 @@ import { AuthComponent } from './auth/auth.component';
 import { LoginComponent } from './auth/pages/login/login.component';
 import { AlumnoDetalleComponent } from './dashboard/pages/alumnos/pages/alumno-detalle/alumno-detalle.component';
 import { CursosComponent } from './dashboard/pages/cursos/cursos.component';
+import { cursoDetalleComponent } from './cursos/pages/curso-detalle/curso-detalle.component';
+
+//import{CursoDetalleComponent}
 
 const routes: Routes = [
   // DASHBOARD
   {
-    // http://localhost:XXXX/dashboard
     path: 'dashboard',
     component: DashboardComponent,
     children: [
       {
-        // http://localhost:XXXX/dashboard/estudiantes
-        path: 'estudiantes',
+        path: 'alumnos',
         children: [
           {
-            // dashboard/estudiantes
             path: '',
             component: AlumnosComponent,
           },
           {
-            // dashboard/estudiantes/:id
             path: ':id',
-            component: AlumnoDetalleComponent
-          }
-        ]
+            component: AlumnoDetalleComponent,
+          },
+        ],
       },
-      // {
-      //   path: 'estudiantes/:id',
-      //   component: AlumnoDetalleComponent,
-      // },
       {
         path: 'cursos',
-        component: CursosComponent,
-      }
-      // {
-      // http://localhost:XXXX/dashboard/comisiones
+        children: [
+          {
+            path: '',
+            component: CursosComponent,
+          },
+          {
+            path: ':id',
+            component: cursoDetalleComponent,
+          },
+        ],
+      },
+
       //   path: 'comisiones',
       //   component: AlumnosComponent,
       // },
-    ]
+    ],
   },
-
   // AUTH
   {
     path: 'auth',
@@ -53,25 +55,21 @@ const routes: Routes = [
     children: [
       {
         path: 'login',
-        component: LoginComponent
+        component: LoginComponent,
       },
-    ]
+    ],
   },
 
   // RUTAS INDEFINIDAS....
   {
-    // CUALQUIER RUTA
+    // CUALQUIER OTRA RUTA, QUE NO COINCIDA CON LAS ANTERIORES
     path: '**',
     redirectTo: 'dashboard',
-  }
-]
+  },
+];
 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(routes)
-  ],
-  exports: [
-    RouterModule
-  ]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

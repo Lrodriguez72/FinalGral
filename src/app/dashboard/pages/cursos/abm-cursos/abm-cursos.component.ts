@@ -15,16 +15,19 @@ export class AbmCursosComponent {
   cursosForm = new FormGroup({
     nombre: this.nombreControl,
     fecha_inicio: this.fechaInicioControl,
-    fecha_fin: this.fechaInicioControl,
+    fecha_fin: this.fechaFinControl,
   });
 
   constructor(
     private dialogRef: MatDialogRef<AbmCursosComponent>,
     @Inject(MAT_DIALOG_DATA) private data: any
   ) {
+    //si se recibe data del modal, en Editar Curso desde cursos.component.ts, entonces
+    // se va a editar
     if (data) {
-      const cursoParaEditar = data.curso;
+      //const cursoParaEditar = data.curso;
 
+      // se parchean los controles con los valores nuevos
       this.nombreControl.setValue(data.cursoParaEditar.nombre);
       this.fechaInicioControl.setValue(data.alumnoParaEditar.fecha_inicio);
       this.fechaFinControl.setValue(data.cursoParaEditar.fecha_fin);
