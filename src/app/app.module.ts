@@ -8,16 +8,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AuthComponent } from './auth/auth.component';
 import { LoginComponent } from './auth/pages/login/login.component';
 import { CoreModule } from './core/core.module';
-import { CursosModule } from './dashboard/pages/cursos/cursos.module';
-import { cursoDetalleComponent } from './cursos/pages/curso-detalle/curso-detalle.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    AuthComponent,
-    LoginComponent,
-    cursoDetalleComponent,
-  ],
+  declarations: [AppComponent, AuthComponent, LoginComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

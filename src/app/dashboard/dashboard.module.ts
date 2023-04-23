@@ -11,9 +11,7 @@ import { MatListModule } from '@angular/material/list';
 import { CursosModule } from './pages/cursos/cursos.module';
 
 @NgModule({
-  declarations: [
-    DashboardComponent
-  ],
+  declarations: [DashboardComponent],
   imports: [
     CommonModule,
     RouterModule,
@@ -25,8 +23,6 @@ import { CursosModule } from './pages/cursos/cursos.module';
     AlumnosModule,
     CursosModule,
   ],
-  exports: [
-    DashboardComponent
-  ]
+  exports: [DashboardComponent],
 })
-export class DashboardModule { }
+export class DashboardModule {}

@@ -31,15 +31,11 @@ export class CursosComponent implements OnInit {
   ];
 
   constructor(
-  
     private matDialog: MatDialog,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private cursosService: CursosService,
-  ) {
-    this.cursosService.obtenerCursos().subscribe((cursos)) =>
-    this.dataSource.data = cursos;
-  }
+    private cursosService: CursosService
+  ) {}
 
   ngOnInit(): void {
     //lo primero es suscribirse a los cambios que ocurran con el Observable
@@ -96,7 +92,10 @@ export class CursosComponent implements OnInit {
       //me suscribo y si hay valor, llamo al editar del servicio
       dialog.afterClosed().subscribe((valorDelFormulario) => {
         if (valorDelFormulario) {
-          this.cursosService.editarCurso(cursoParaEditar.id, valorDelFormulario);
+          this.cursosService.editarCurso(
+            cursoParaEditar.id,
+            valorDelFormulario
+          );
         }
       });
     }
