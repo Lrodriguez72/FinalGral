@@ -29,7 +29,7 @@ export class AbmCursosComponent {
 
       // se parchean los controles con los valores nuevos
       this.nombreControl.setValue(data.cursoParaEditar.nombre);
-      this.fechaInicioControl.setValue(data.alumnoParaEditar.fecha_inicio);
+      this.fechaInicioControl.setValue(data.cursoParaEditar.fecha_inicio);
       this.fechaFinControl.setValue(data.cursoParaEditar.fecha_fin);
     }
   }

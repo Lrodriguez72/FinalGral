@@ -9,9 +9,10 @@ import { AlumnosModule } from './pages/alumnos/alumnos.module';
 import { RouterModule } from '@angular/router';
 import { MatListModule } from '@angular/material/list';
 import { CursosModule } from './pages/cursos/cursos.module';
+import { InscripcionesComponent } from './pages/inscripciones/inscripciones.component';
 
 @NgModule({
-  declarations: [DashboardComponent],
+  declarations: [DashboardComponent, InscripcionesComponent],
   imports: [
     CommonModule,
     RouterModule,

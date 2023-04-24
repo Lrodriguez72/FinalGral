@@ -5,6 +5,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AbmCursosComponent } from './abm-cursos/abm-cursos.component';
+import { CursoDetalleComponent } from './pages/curso-detalle/curso-detalle.component';
+import { InscripcionesServiceService } from '../inscripciones/services/inscripciones-service.service';
 
 export interface Curso {
   id: number;
@@ -34,13 +36,15 @@ export class CursosComponent implements OnInit {
     private matDialog: MatDialog,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private cursosService: CursosService
+    private cursosService: CursosService,
+    private inscripcionesService: InscripcionesServiceService
   ) {}
 
   ngOnInit(): void {
     //lo primero es suscribirse a los cambios que ocurran con el Observable
     //así, al mantenerse activa la suscripción, cada vez que ocurra un cambio, como ABM, del lado del servicio
     //voy a recibir la emisión del nuevo valor
+    this.inscripcionesService.inscribirAlumnoACurso(4, 3);
     this.cursosService.obtenerCursos().subscribe({
       next: (cursos) => {
         this.dataSource.data = cursos;
@@ -76,9 +80,29 @@ export class CursosComponent implements OnInit {
 
   aplicarFiltros(ev: Event): void {}
 
-  irAlDetalle(cursoId: number): void {}
+  irAlDetalle(cursoId: number): void {
+    this.cursosService
+      .obtenerCursoPorId(cursoId)
+      .subscribe((element: Curso | undefined) => {
+        const dialog = this.matDialog.open(CursoDetalleComponent, {
+          //en editar envío data
+          //así al recibirlo, pregunto si hay data
+          data: {
+            element,
+          },
+        });
+      });
 
-  eliminarCurso(curso: Curso): void {}
+    // console.log(
+    //   this.cursosService
+    //     .obtenerCursoPorId(cursoId)
+    //     .subscribe((elements) => )
+    // );
+  }
+
+  eliminarCurso(curso: Curso): void {
+    this.cursosService.eliminarCurso(curso.id);
+  }
 
   editarCurso(cursoParaEditar: Curso): void {
     {

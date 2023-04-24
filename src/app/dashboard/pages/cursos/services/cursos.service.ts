@@ -28,19 +28,16 @@ const CURSOS_MOCKS: Curso[] = [
   providedIn: 'root',
 })
 export class CursosService {
-  private cursos$ = new BehaviorSubject<Curso[]>([]);
+  private cursos$ = new BehaviorSubject<Curso[]>(CURSOS_MOCKS);
 
   constructor() {}
 
   obtenerCursos(): Observable<Curso[]> {
-    this.cursos$.next(CURSOS_MOCKS);
     return this.cursos$.asObservable();
   }
 
   obtenerCursoPorId(id: number): Observable<Curso | undefined> {
-    return this.cursos$
-      .asObservable()
-      .pipe(map((Cursos) => Cursos.find((a) => a.id === id)));
+    return this.cursos$.pipe(map((Cursos) => Cursos.find((a) => a.id === id)));
   }
 
   crearCurso(payload: CrearCursoPayload): Observable<Curso[]> {
@@ -89,5 +86,24 @@ export class CursosService {
     });
 
     return this.cursos$.asObservable();
+  }
+
+  eliminarCurso(cursoId: number): Observable<Curso[]> {
+    this.cursos$.pipe(take(1)).subscribe({
+      next: (cursos) => {
+        //filtro con los que quiero quedarme, todos menos el que coincide en id
+        const cursosActualizados = cursos.filter(
+          (curso) => curso.id !== cursoId
+        );
+        this.cursos$.next(cursosActualizados);
+      },
+      complete: () => {},
+      error: () => {},
+    });
+
+    return this.cursos$.asObservable();
+    function eliminarCurso(cursoId: any, number: any) {
+      throw new Error('Function not implemented.');
+    }
   }
 }
