@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, take } from 'rxjs';
 import { Inscripcion } from 'src/app/core/models/cursos-alumnos';
 
 @Injectable({
@@ -16,7 +16,7 @@ export class InscripcionesServiceService {
   inscribirAlumnoACurso(idAlumno: number, idCurso: number) {
     let numberId;
     this.inscripciones$.subscribe((inscripciones: Inscripcion[]) => {
-      numberId = inscripciones.length + 5;
+      numberId = inscripciones.length + 1;
       let newInscripcion: Inscripcion = {
         id: numberId,
         idCurso: idCurso,

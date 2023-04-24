@@ -6,7 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AbmCursosComponent } from './abm-cursos/abm-cursos.component';
 import { CursoDetalleComponent } from './pages/curso-detalle/curso-detalle.component';
-import { InscripcionesServiceService } from '../inscripciones/services/inscripciones-service.service';
+import { InscripcionesServiceService } from '../inscripciones/services/inscripciones.service';
 
 export interface Curso {
   id: number;
@@ -78,7 +78,10 @@ export class CursosComponent implements OnInit {
     });
   }
 
-  aplicarFiltros(ev: Event): void {}
+  aplicarFiltros(ev: Event): void {
+    const inputValue = (ev.target as HTMLInputElement)?.value;
+    this.dataSource.filter = inputValue?.trim()?.toLowerCase();
+  }
 
   irAlDetalle(cursoId: number): void {
     this.cursosService
