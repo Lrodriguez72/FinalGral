@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CursosService } from './services/cursos.service';
+import { CursosService, CURSOS_MOCKS } from './services/cursos.service';
 import { MatTableDataSource } from '@angular/material/table';
 //import { Curso } from './models';
 import { MatDialog } from '@angular/material/dialog';
@@ -7,6 +7,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AbmCursosComponent } from './abm-cursos/abm-cursos.component';
 import { CursoDetalleComponent } from './pages/curso-detalle/curso-detalle.component';
 import { InscripcionesServiceService } from '../inscripciones/services/inscripciones.service';
+import { Alumno } from '../alumnos/models';
+import { Inscripcion } from 'src/app/core/models/cursos-alumnos';
 
 export interface Curso {
   id: number;
@@ -44,7 +46,13 @@ export class CursosComponent implements OnInit {
     //lo primero es suscribirse a los cambios que ocurran con el Observable
     //así, al mantenerse activa la suscripción, cada vez que ocurra un cambio, como ABM, del lado del servicio
     //voy a recibir la emisión del nuevo valor
-    this.inscripcionesService.inscribirAlumnoACurso(4, 3);
+    // const al1: Alumno = {
+    //   id: 100,
+    //   nombre: 'Alberto',
+    //   apellido: 'Fermamdez',
+    //   fecha_registro: new Date(),
+    // };
+    // this.inscripcionesService.inscribirAlumnoACurso(al1, CURSOS_MOCKS.at(1)!);
     this.cursosService.obtenerCursos().subscribe({
       next: (cursos) => {
         this.dataSource.data = cursos;
@@ -87,13 +95,19 @@ export class CursosComponent implements OnInit {
     this.cursosService
       .obtenerCursoPorId(cursoId)
       .subscribe((element: Curso | undefined) => {
-        const dialog = this.matDialog.open(CursoDetalleComponent, {
-          //en editar envío data
-          //así al recibirlo, pregunto si hay data
-          data: {
-            element,
-          },
-        });
+        this.inscripcionesService
+          .getInscipcionesDeCurso(element!.id)
+          .subscribe((res: Inscripcion[] | undefined) => {
+            let inscs = res;
+            const dialog = this.matDialog.open(CursoDetalleComponent, {
+              //en editar envío data
+              //así al recibirlo, pregunto si hay data
+              data: {
+                element,
+                inscs,
+              },
+            });
+          });
       });
 
     // console.log(

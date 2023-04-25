@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject, map } from 'rxjs';
 import { Alumno } from '../models';
 
-const ALUMNOS_MOCKS: Alumno[] = [
+export const ALUMNOS_MOCKS: Alumno[] = [
   {
     id: 1,
     nombre: 'Lisa',
@@ -40,18 +40,8 @@ const ALUMNOS_MOCKS: Alumno[] = [
   providedIn: 'root',
 })
 export class AlumnosService {
-  // Subject
+  // BehaviourSubject
   private alumnos$ = new BehaviorSubject<Alumno[]>(ALUMNOS_MOCKS);
-
-  // BehaviorSubject
-  private alumno2$ = new BehaviorSubject<Alumno[]>([
-    {
-      id: 5,
-      nombre: 'Montgomery',
-      apellido: 'Burns',
-      fecha_registro: new Date(),
-    },
-  ]);
 
   constructor() {}
 

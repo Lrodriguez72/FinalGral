@@ -3,7 +3,7 @@ import { BehaviorSubject, map, Observable, take } from 'rxjs';
 import { CrearCursoPayload } from '../models';
 import { Curso } from '../models';
 
-const CURSOS_MOCKS: Curso[] = [
+export const CURSOS_MOCKS: Curso[] = [
   {
     id: 1,
     nombre: 'Angular',
@@ -102,8 +102,5 @@ export class CursosService {
     });
 
     return this.cursos$.asObservable();
-    function eliminarCurso(cursoId: any, number: any) {
-      throw new Error('Function not implemented.');
-    }
   }
 }

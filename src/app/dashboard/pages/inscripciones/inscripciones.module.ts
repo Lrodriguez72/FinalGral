@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CursosComponent } from './cursos.component';
+
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTableModule } from '@angular/material/table';
@@ -12,13 +12,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import { AbmCursosComponent } from './abm-cursos/abm-cursos.component';
 import { DirectivesModule } from 'src/app/shared/directives/directives.module';
 import { BrowserModule } from '@angular/platform-browser';
-import { CursoDetalleComponent } from './pages/curso-detalle/curso-detalle.component';
+import { InscripcionesComponent } from './inscripciones.component';
 
 @NgModule({
-  declarations: [CursosComponent, AbmCursosComponent, CursoDetalleComponent],
+  declarations: [InscripcionesComponent],
   imports: [
     BrowserModule,
     DirectivesModule,
@@ -34,6 +33,5 @@ import { CursoDetalleComponent } from './pages/curso-detalle/curso-detalle.compo
     MatDatepickerModule,
     MatNativeDateModule,
   ],
-  // exports: [CursosComponent],
 })
-export class CursosModule {}
+export class InscripcionesModule {}

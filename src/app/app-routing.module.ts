@@ -7,6 +7,7 @@ import { LoginComponent } from './auth/pages/login/login.component';
 import { AlumnoDetalleComponent } from './dashboard/pages/alumnos/pages/alumno-detalle/alumno-detalle.component';
 import { CursosComponent } from './dashboard/pages/cursos/cursos.component';
 import { CursoDetalleComponent } from './dashboard/pages/cursos/pages/curso-detalle/curso-detalle.component';
+import { InscripcionesComponent } from './dashboard/pages/inscripciones/inscripciones.component';
 
 //import{CursoDetalleComponent}
 
@@ -42,7 +43,15 @@ const routes: Routes = [
           },
         ],
       },
-
+      {
+        path: 'inscripciones',
+        children: [
+          {
+            path: '',
+            component: InscripcionesComponent,
+          },
+        ],
+      },
       //   path: 'comisiones',
       //   component: AlumnosComponent,
       // },

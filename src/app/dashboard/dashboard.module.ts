@@ -9,10 +9,11 @@ import { AlumnosModule } from './pages/alumnos/alumnos.module';
 import { RouterModule } from '@angular/router';
 import { MatListModule } from '@angular/material/list';
 import { CursosModule } from './pages/cursos/cursos.module';
-import { InscripcionesComponent } from './pages/inscripciones/inscripciones.component';
+
+import { InscripcionesModule } from './pages/inscripciones/inscripciones.module';
 
 @NgModule({
-  declarations: [DashboardComponent, InscripcionesComponent],
+  declarations: [DashboardComponent],
   imports: [
     CommonModule,
     RouterModule,
@@ -23,6 +24,7 @@ import { InscripcionesComponent } from './pages/inscripciones/inscripciones.comp
     MatListModule,
     AlumnosModule,
     CursosModule,
+    InscripcionesModule,
   ],
   exports: [DashboardComponent],
 })
