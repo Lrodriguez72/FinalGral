@@ -25,9 +25,9 @@ export class AbmInscripcionesComponent {
     @Inject(MAT_DIALOG_DATA) private data: any
   ) {
     if (data) {
-      this.cursoControl.setValue(data.inscripcionParaEditar.curso);
-      this.alumnoControl.setValue(data.inscripcionParaEditar.alumno);
-      this.fechaControl.setValue(data.inscripcionParaEditar.fecha);
+      this.cursoControl.setValue(data.inscripcionParaEditar.curso.nombre);
+      this.alumnoControl.setValue(data.inscripcionParaEditar.alumno.nombre);
+      this.fechaControl.setValue(data.inscripcionParaEditar.curso.fecha_inicio);
     }
   }
 
