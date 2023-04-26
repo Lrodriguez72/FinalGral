@@ -11,6 +11,7 @@ import { MatListModule } from '@angular/material/list';
 import { CursosModule } from './pages/cursos/cursos.module';
 
 import { InscripcionesModule } from './pages/inscripciones/inscripciones.module';
+//import { AbmInscripcionesComponent } from './pages/inscripciones/abm-inscripciones/abm-inscripciones.component';
 
 @NgModule({
   declarations: [DashboardComponent],
@@ -24,7 +25,7 @@ import { InscripcionesModule } from './pages/inscripciones/inscripciones.module'
     MatListModule,
     AlumnosModule,
     CursosModule,
-    InscripcionesModule,
+    //InscripcionesModule,
   ],
   exports: [DashboardComponent],
 })

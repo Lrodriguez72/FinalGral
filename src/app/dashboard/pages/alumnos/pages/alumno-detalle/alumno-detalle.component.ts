@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { AlumnosService } from '../../services/alumnos.service';
 import { Subject, takeUntil } from 'rxjs';
 import { Alumno } from '../../models';
+import { Inscripcion } from '../../../inscripciones/models';
 
 @Component({
   selector: 'app-alumno-detalle',
@@ -11,6 +12,7 @@ import { Alumno } from '../../models';
 })
 export class AlumnoDetalleComponent implements OnDestroy {
   alumno: Alumno | undefined;
+  inscripciones: Inscripcion[] | undefined = undefined;
 
   private destroyed$ = new Subject();
 

@@ -1,3 +1,11 @@
-<p>{{ alumno?.nombre }}</p>
+<!-- <p>{{ alumno?.nombre }}</p>
 <p>{{ alumno?.apellido }}</p>
-<p>{{ alumno?.fecha_registro | date : "dd/MM/YYYY" }}</p>
+<p>{{ alumno?.fecha_registro | date : "dd/MM/YYYY" }}</p> -->
+
+<h1>El alumno: {{ alumno?.nombre }} {{ alumno?.apellido }}</h1>
+<h1>Se encuentra inscripto en los siguientes cursos:</h1>
+<div *ngFor="let inscripcion of inscripciones">
+  <div>
+    <h2>{{ inscripcion.alumno.nombre }} {{ inscripcion.alumno.apellido }}</h2>
+  </div>
+</div>

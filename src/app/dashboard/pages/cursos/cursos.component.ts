@@ -46,13 +46,7 @@ export class CursosComponent implements OnInit {
     //lo primero es suscribirse a los cambios que ocurran con el Observable
     //así, al mantenerse activa la suscripción, cada vez que ocurra un cambio, como ABM, del lado del servicio
     //voy a recibir la emisión del nuevo valor
-    // const al1: Alumno = {
-    //   id: 100,
-    //   nombre: 'Alberto',
-    //   apellido: 'Fermamdez',
-    //   fecha_registro: new Date(),
-    // };
-    // this.inscripcionesService.inscribirAlumnoACurso(al1, CURSOS_MOCKS.at(1)!);
+
     this.cursosService.obtenerCursos().subscribe({
       next: (cursos) => {
         this.dataSource.data = cursos;

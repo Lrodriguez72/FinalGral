@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Inscripcion } from 'src/app/core/models/cursos-alumnos';
 import { InscripcionesServiceService } from './services/inscripciones.service';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AbmInscripcionesComponent } from './abm-inscripciones/abm-inscripciones.component';
+import { MatDialog } from '@angular/material/dialog';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-inscripciones',
@@ -22,7 +26,10 @@ export class InscripcionesComponent implements OnInit {
     'eliminar',
   ];
 
-  constructor(private inscripcionesService: InscripcionesServiceService) {
+  constructor(
+    private inscripcionesService: InscripcionesServiceService,
+    private matDialog: MatDialog
+  ) {
     this.inscripcionesService
       .getInscripciones()
       .subscribe((res: Inscripcion[]) => {
@@ -45,5 +52,24 @@ export class InscripcionesComponent implements OnInit {
 
   eliminarInscripcion(insc: Inscripcion): void {
     this.inscripcionesService.eliminarInscripcion(insc.id);
+  }
+
+  editarInscripcion(inscripcionParaEditar: Inscripcion): void {
+    {
+      const dialog = this.matDialog.open(AbmInscripcionesComponent, {
+        data: {
+          inscripcionParaEditar,
+        },
+      });
+
+      dialog.afterClosed().subscribe((valorDelFormulario) => {
+        if (valorDelFormulario) {
+          this.inscripcionesService.editarInscripcion(
+            inscripcionParaEditar.id,
+            valorDelFormulario
+          );
+        }
+      });
+    }
   }
 }

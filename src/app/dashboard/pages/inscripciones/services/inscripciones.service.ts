@@ -2,7 +2,10 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, Observable, take } from 'rxjs';
 import { Inscripcion } from 'src/app/core/models/cursos-alumnos';
 import { Alumno } from '../../alumnos/models';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+
 import { Curso } from '../../cursos/models';
+
 import {
   AlumnosService,
   ALUMNOS_MOCKS,
@@ -81,6 +84,16 @@ export class InscripcionesServiceService {
     );
   }
 
+  getInscipcionesDeAlumnos(
+    AlumnoId: number
+  ): Observable<Inscripcion[] | undefined> {
+    return this.inscripciones$.pipe(
+      map((Inscripciones) =>
+        Inscripciones.filter((a) => a.alumno.id == AlumnoId)
+      )
+    );
+  }
+
   eliminarInscripcion(inscripcionId: number): Observable<Inscripcion[]> {
     this.inscripciones$.pipe(take(1)).subscribe({
       next: (inscripciones) => {
@@ -92,6 +105,32 @@ export class InscripcionesServiceService {
       },
       complete: () => {},
       error: () => {},
+    });
+
+    return this.inscripciones$.asObservable();
+  }
+
+  editarInscripcion(
+    inscripcionId: number,
+    actualizacion: Partial<Inscripcion>
+  ): Observable<Inscripcion[]> {
+    this.inscripciones$.pipe(take(1)).subscribe({
+      next: (inscripciones) => {
+        const inscripcionesActualizados = inscripciones.map((inscripcion) => {
+          if (inscripcion.id === inscripcionId) {
+            return {
+              ...inscripcion,
+              ...actualizacion,
+            };
+          } else {
+            return inscripcion;
+          }
+        });
+
+        this.inscripciones$.next(inscripcionesActualizados);
+      },
+      //complete: () => {},
+      //error: () => {}
     });
 
     return this.inscripciones$.asObservable();
