@@ -34,6 +34,8 @@ import { RouterModule } from '@angular/router';
     MatDialogModule,
     MatDatepickerModule,
     MatNativeDateModule,
+
+    // Faltaba la definicion de rutas para este modulo
     RouterModule.forChild([
       {
         // dashboard/cursos
