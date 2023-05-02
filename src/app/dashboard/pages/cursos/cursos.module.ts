@@ -14,13 +14,13 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { AbmCursosComponent } from './abm-cursos/abm-cursos.component';
 import { DirectivesModule } from 'src/app/shared/directives/directives.module';
-import { BrowserModule } from '@angular/platform-browser';
+//import { BrowserModule } from '@angular/platform-browser';
 import { CursoDetalleComponent } from './pages/curso-detalle/curso-detalle.component';
 
 @NgModule({
   declarations: [CursosComponent, AbmCursosComponent, CursoDetalleComponent],
   imports: [
-    BrowserModule,
+    //BrowserModule,
     DirectivesModule,
     CommonModule,
     PipesModule,

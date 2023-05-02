@@ -11,7 +11,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { DirectivesModule } from 'src/app/shared/directives/directives.module';
-import { BrowserModule } from '@angular/platform-browser';
+//import { BrowserModule } from '@angular/platform-browser';
 
 import { InscripcionesComponent } from './inscripciones.component';
 import { AbmInscripcionesComponent } from './abm-inscripciones/abm-inscripciones.component';
@@ -19,7 +19,6 @@ import { AbmInscripcionesComponent } from './abm-inscripciones/abm-inscripciones
 @NgModule({
   declarations: [InscripcionesComponent, AbmInscripcionesComponent],
   imports: [
-    BrowserModule,
     DirectivesModule,
     CommonModule,
     PipesModule,

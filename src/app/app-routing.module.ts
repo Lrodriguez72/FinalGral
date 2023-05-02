@@ -8,70 +8,32 @@ import { AlumnoDetalleComponent } from './dashboard/pages/alumnos/pages/alumno-d
 import { CursosComponent } from './dashboard/pages/cursos/cursos.component';
 import { CursoDetalleComponent } from './dashboard/pages/cursos/pages/curso-detalle/curso-detalle.component';
 import { InscripcionesComponent } from './dashboard/pages/inscripciones/inscripciones.component';
+import { AuthGuard } from './auth/guards/auth.guard';
+import { LoginGuard } from './auth/guards/login.guard';
 
-//import{CursoDetalleComponent}
-
+//el canActive protege la ruta usando el guard o un arreglo de guards
 const routes: Routes = [
   // DASHBOARD
   {
+    // http://localhost:XXXX/dashboard
     path: 'dashboard',
+    // canActivate: [AuthGuard],
     component: DashboardComponent,
-    children: [
-      {
-        path: 'alumnos',
-        children: [
-          {
-            path: '',
-            component: AlumnosComponent,
-          },
-          {
-            path: ':id',
-            component: AlumnoDetalleComponent,
-          },
-        ],
-      },
-      {
-        path: 'cursos',
-        children: [
-          {
-            path: '',
-            component: CursosComponent,
-          },
-          {
-            path: ':id',
-            component: CursoDetalleComponent,
-          },
-        ],
-      },
-      {
-        path: 'inscripciones',
-        children: [
-          {
-            path: '',
-            component: InscripcionesComponent,
-          },
-        ],
-      },
-      //   path: 'comisiones',
-      //   component: AlumnosComponent,
-      // },
-    ],
+    loadChildren: () =>
+      import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
   },
+
   // AUTH
   {
     path: 'auth',
-    component: AuthComponent,
-    children: [
-      {
-        path: 'login',
-        component: LoginComponent,
-      },
-    ],
+    canActivate: [LoginGuard],
+    // component: AuthComponent,
+    loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
   },
 
   // RUTAS INDEFINIDAS....
   {
-    // CUALQUIER OTRA RUTA, QUE NO COINCIDA CON LAS ANTERIORES
+    // CUALQUIER RUTA
     path: '**',
     redirectTo: 'dashboard',
   },

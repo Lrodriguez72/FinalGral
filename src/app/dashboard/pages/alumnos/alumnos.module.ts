@@ -13,6 +13,7 @@ import { AlumnosComponent } from './alumnos.component';
 import { AlumnoDetalleComponent } from './pages/alumno-detalle/alumno-detalle.component';
 import { AbmAlumnosComponent } from './abm-alumnos/abm-alumnos.component';
 
+import { RouterModule } from '@angular/router';
 @NgModule({
   declarations: [AlumnosComponent, AbmAlumnosComponent, AlumnoDetalleComponent],
   imports: [
@@ -25,6 +26,16 @@ import { AbmAlumnosComponent } from './abm-alumnos/abm-alumnos.component';
     MatInputModule,
     MatButtonModule,
     ReactiveFormsModule,
+    RouterModule.forChild([
+      {
+        path: '',
+        component: AlumnosComponent,
+      },
+      {
+        path: ':id',
+        component: AlumnoDetalleComponent,
+      },
+    ]),
   ],
   exports: [AlumnosComponent],
 })
