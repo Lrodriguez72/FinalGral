@@ -16,6 +16,7 @@ import { AbmCursosComponent } from './abm-cursos/abm-cursos.component';
 import { DirectivesModule } from 'src/app/shared/directives/directives.module';
 //import { BrowserModule } from '@angular/platform-browser';
 import { CursoDetalleComponent } from './pages/curso-detalle/curso-detalle.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [CursosComponent, AbmCursosComponent, CursoDetalleComponent],
@@ -33,6 +34,15 @@ import { CursoDetalleComponent } from './pages/curso-detalle/curso-detalle.compo
     MatDialogModule,
     MatDatepickerModule,
     MatNativeDateModule,
+
+    // Faltaba la definicion de rutas para este modulo
+    RouterModule.forChild([
+      {
+        // dashboard/cursos
+        path: '',
+        component: CursosComponent,
+      }
+    ])
   ],
   // exports: [CursosComponent],
 })

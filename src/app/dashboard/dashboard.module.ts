@@ -32,7 +32,8 @@ import { AdminGuard } from '../auth/guards/admin.guard';
     RouterModule.forChild([
       {
         // http://localhost:XXXX/dashboard/estudiantes
-        path: 'estudiantes',
+        // El boton del menu de navegacion redirigia a dashboard/alumnos pero aca estaba definida la ruta como dashboard/estudiantes
+        path: 'alumnos',
         loadChildren: () =>
           import('./pages/alumnos/alumnos.module').then((m) => m.AlumnosModule),
       },
