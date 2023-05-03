@@ -39,9 +39,9 @@ const routes: Routes = [
 
   // RUTAS INDEFINIDAS....
   {
-    // CUALQUIER RUTA
+    // CUALQUIER OTRA RUTA
     path: '**',
-    redirectTo: 'dashboard',
+    redirectTo: 'auth',
   },
 ];
 
