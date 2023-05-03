@@ -54,39 +54,40 @@ export class AuthService {
       });
   }
 
+  verificarToken(): Observable<boolean> {
+    const token = localStorage.getItem('token');
+    return (
+      this.httpClient
+        //siempre recibe un array de Usuarios
+        .get<Usuario[]>(`${enviroment.apiBaseUrl}/usuarios?token=${token}`, {
+          // IMPLEMENTA EL ENVIO DE INFO POR CABECERA
+          headers: new HttpHeaders({
+            Authorization: token || '',
+          }),
+        })
+        .pipe(
+          map((usuarios) => {
+            const usuarioAutenticado = usuarios[0];
+            if (usuarioAutenticado) {
+              localStorage.setItem('token', usuarioAutenticado.token);
+              this.authUser$.next(usuarioAutenticado);
+            }
+            return !!usuarioAutenticado;
+            //!!algo, retorna el booleano
+          }),
+          //PIPE CATCH ERROR PARA APLICAR A LA PETICION
+          catchError((err) => {
+            alert('Error al verificar el token');
+
+            return throwError(() => err);
+          })
+        )
+    );
+  }
+
   logout(): void {
     localStorage.removeItem('token');
     this.authUser$.next(null);
     this.router.navigate(['auth']);
-  }
-
-  //
-  //
-  //
-  verificarToken(): Observable<boolean> {
-    const token = localStorage.getItem('token');
-    return this.httpClient
-      .get<Usuario[]>(`${enviroment.apiBaseUrl}/usuarios?token=${token}`, {
-        headers: new HttpHeaders({
-          Authorization: token || '',
-        }),
-      })
-      .pipe(
-        map((usuarios) => {
-          const usuarioAutenticado = usuarios[0];
-          if (usuarioAutenticado) {
-            localStorage.setItem('token', usuarioAutenticado.token);
-            this.authUser$.next(usuarioAutenticado);
-          }
-          return !!usuarioAutenticado;
-          //!!algo, retorna el booleano
-        }),
-        catchError((err) => {
-          ///////////////////////
-          alert('Error al verificar el token');
-          //////////////////////
-          return throwError(() => err);
-        })
-      );
   }
 }

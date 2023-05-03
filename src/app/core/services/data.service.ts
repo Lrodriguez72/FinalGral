@@ -12,6 +12,7 @@ import { Usuario } from '../models';
 })
 export class DataService {
   private users$ = new Subject<Usuario>();
+  authUser$: any;
 
   //   private alumnos$ = new BehaviorSubject<Alumno>();
 
@@ -20,12 +21,13 @@ export class DataService {
     private alumnosService: AlumnosService,
     private inscripcionesService: InscripcionesServiceService
   ) {}
+  ///////////////////////////////
+  // obtenerUsuarioAutenticado(): Observable<Usuario> {
+  //   return this.authUser$.asObservable();
+  // }
 
-  //   obtenerUsuarioAutenticado(): Observable<Usuario> {
-  //     return this.authUser$.asObservable();
-  //   }
-
-  //   login(usuario: Usuario): void {
-  //     this.authUser$.next(usuario);
-  //   }
+  // login(usuario: Usuario): void {
+  //   this.authUser$.next(usuario);
+  // }
+  ////////////////////////////
 }

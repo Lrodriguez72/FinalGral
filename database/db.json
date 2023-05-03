@@ -1,15 +1,6 @@
 {
   "usuarios": [
     {
-      "id": 1,
-      "nombre": "Josué",
-      "apellido": "Baez",
-      "email": "josue@mail.com",
-      "password": "123456",
-      "token": "hjsdfJHFDSAFMsaDsan12sdanjjadashj3FDBEWH",
-      "role": "admin"
-    },
-    {
       "id": 7,
       "nombre": "Pablo",
       "apellido": "García",
@@ -26,6 +17,15 @@
       "token": "LLL123RRR",
       "role": "admin",
       "id": 4
+    },
+    {
+      "nombre": "Josue",
+      "apellido": "Baez",
+      "email": "josue@mail.com",
+      "password": "676767",
+      "token": "12gg345tt343fdfdfsfsfsf",
+      "role": "admin",
+      "id": 8
     }
   ],
   "cursos": [

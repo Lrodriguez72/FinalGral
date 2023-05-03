@@ -11,6 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PipesModule } from '../shared/pipes/pipes.module';
 import { RegisterComponent } from './pages/register/register.component';
+import { AppComponent } from '../app.component';
 
 const routes: Routes = [
   {

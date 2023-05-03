@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CursosService, CURSOS_MOCKS } from './services/cursos.service';
 import { MatTableDataSource } from '@angular/material/table';
 //import { Curso } from './models';
@@ -22,6 +22,7 @@ export interface Curso {
   styleUrls: ['./cursos.component.scss'],
 })
 export class CursosComponent implements OnInit {
+  //falta OnDestroy
   dataSource = new MatTableDataSource<Curso>();
 
   displayedColumns = [
@@ -135,4 +136,8 @@ export class CursosComponent implements OnInit {
       });
     }
   }
+
+  // ngOnDestroy(): void {
+  //   this.cursosService.obtenerCursos().unsuscribe();
+  // }
 }

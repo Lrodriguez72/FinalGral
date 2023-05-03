@@ -3,13 +3,14 @@ import { Observable, Subject } from 'rxjs';
 import { Usuario } from '../models';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
+  [x: string]: any;
 
   private authUser$ = new Subject<Usuario>();
 
-  constructor() { }
+  constructor() {}
 
   obtenerUsuarioAutenticado(): Observable<Usuario> {
     return this.authUser$.asObservable();

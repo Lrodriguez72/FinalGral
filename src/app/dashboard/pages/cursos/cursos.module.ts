@@ -16,24 +16,33 @@ import { AbmCursosComponent } from './abm-cursos/abm-cursos.component';
 import { DirectivesModule } from 'src/app/shared/directives/directives.module';
 //import { BrowserModule } from '@angular/platform-browser';
 import { CursoDetalleComponent } from './pages/curso-detalle/curso-detalle.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [CursosComponent, AbmCursosComponent, CursoDetalleComponent],
   imports: [
-    //BrowserModule,
-    DirectivesModule,
     CommonModule,
     PipesModule,
     ReactiveFormsModule,
     MatIconModule,
+
     MatFormFieldModule,
     MatInputModule,
+
     MatTableModule,
     MatButtonModule,
+
     MatDialogModule,
     MatDatepickerModule,
     MatNativeDateModule,
+
+    RouterModule.forChild([
+      {
+        // /dashboard/cursos
+        path: '',
+        component: CursosComponent,
+      },
+    ]),
   ],
-  // exports: [CursosComponent],
 })
 export class CursosModule {}

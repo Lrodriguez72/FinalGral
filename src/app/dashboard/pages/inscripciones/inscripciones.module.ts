@@ -15,6 +15,7 @@ import { DirectivesModule } from 'src/app/shared/directives/directives.module';
 
 import { InscripcionesComponent } from './inscripciones.component';
 import { AbmInscripcionesComponent } from './abm-inscripciones/abm-inscripciones.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [InscripcionesComponent, AbmInscripcionesComponent],
@@ -31,7 +32,14 @@ import { AbmInscripcionesComponent } from './abm-inscripciones/abm-inscripciones
     MatDialogModule,
     MatDatepickerModule,
     MatNativeDateModule,
+
+    RouterModule.forChild([
+      {
+        // /dashboard/inscripciones
+        path: '',
+        component: InscripcionesComponent,
+      },
+    ]),
   ],
-  //exports: [InscripcionesComponent],
 })
 export class InscripcionesModule {}
