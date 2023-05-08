@@ -10,7 +10,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AuthService } from '../../services/auth.service';
 import { AuthServiceMock } from '../../mocks/auth-service.mock';
 
-describe('Pruebas sobre el Login', () => {
+//Test sobre el Componente
+describe('Pruebas sobre el LoginComponent', () => {
   let component: LoginComponent;
 
   //lógica antes de cada prueba, para configuración previa

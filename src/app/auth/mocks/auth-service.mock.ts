@@ -8,6 +8,7 @@ export const USUARIO_ADMIN_MOCK: Usuario = {
   email: 'test@mail.com',
   nombre: 'testnombre',
   role: 'admin',
+  password: '123456',
   token: 'asdkjsanfkdams3u2hjdasfadsuh',
 };
 

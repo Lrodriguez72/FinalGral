@@ -4,5 +4,6 @@ export interface Usuario {
   apellido: string;
   role: string;
   email: string;
+  password: string;
   token: string;
 }
