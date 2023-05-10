@@ -22,6 +22,14 @@
   />
 </mat-form-field>
 
+<div class="mb-3">
+  <button (click)="crearInscripcion()" color="primary" mat-flat-button>
+    <!-- <button  color="primary" mat-flat-button> -->
+    <mat-icon>add</mat-icon>
+    Agregar Inscripcion
+  </button>
+</div>
+
 <table mat-table [dataSource]="dataSource">
   <!-- Id Column -->
   <ng-container matColumnDef="id">

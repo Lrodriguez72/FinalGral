@@ -1,8 +1,14 @@
 import { Component, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatOption } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { Curso } from '../../cursos/models';
+import { Alumno } from '../../alumnos/models';
+import { CursosService } from '../../cursos/services/cursos.service';
+import { AlumnosService } from '../../alumnos/services/alumnos.service';
 
 @Component({
   selector: 'app-abm-inscripciones',
@@ -10,6 +16,8 @@ import { MatNativeDateModule } from '@angular/material/core';
   styleUrls: ['./abm-inscripciones.component.scss'],
 })
 export class AbmInscripcionesComponent {
+  cursos: Curso[] = [];
+  alumnos: Alumno[] = [];
   cursoControl = new FormControl('', [Validators.required]);
   alumnoControl = new FormControl('', [Validators.required]);
   fechaControl = new FormControl('', [Validators.required]);
@@ -22,8 +30,17 @@ export class AbmInscripcionesComponent {
 
   constructor(
     private dialogRef: MatDialogRef<AbmInscripcionesComponent>,
-    @Inject(MAT_DIALOG_DATA) private data: any
+    @Inject(MAT_DIALOG_DATA) private data: any,
+    private cursosService: CursosService,
+    private alumnosService: AlumnosService
   ) {
+    this.cursosService.obtenerCursos().subscribe((success: Curso[]) => {
+      this.cursos = success;
+    });
+
+    this.alumnosService.obtenerAlumnos().subscribe((success: Alumno[]) => {
+      this.alumnos = success;
+    });
     if (data) {
       this.cursoControl.setValue(data.inscripcionParaEditar.curso.nombre);
       this.alumnoControl.setValue(data.inscripcionParaEditar.alumno.nombre);

@@ -9,13 +9,16 @@ import { PipesModule } from 'src/app/shared/pipes/pipes.module';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
 import { DirectivesModule } from 'src/app/shared/directives/directives.module';
+import { MatOption } from '@angular/material/core';
+
 //import { BrowserModule } from '@angular/platform-browser';
 
 import { InscripcionesComponent } from './inscripciones.component';
 import { AbmInscripcionesComponent } from './abm-inscripciones/abm-inscripciones.component';
 import { RouterModule } from '@angular/router';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [InscripcionesComponent, AbmInscripcionesComponent],
@@ -31,7 +34,9 @@ import { RouterModule } from '@angular/router';
     MatButtonModule,
     MatDialogModule,
     MatDatepickerModule,
+    MatOptionModule,
     MatNativeDateModule,
+    MatSelectModule,
 
     RouterModule.forChild([
       {

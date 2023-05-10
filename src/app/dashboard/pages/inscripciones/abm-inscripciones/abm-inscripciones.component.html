@@ -3,50 +3,35 @@
   <form class="grid formgrid" [formGroup]="inscripcionesForm">
     <!-- CONTROL DE CURSO -->
 
-    <div class="col-12 field">
-      <mat-form-field class="w-full">
-        <mat-label>Nombre del curso</mat-label>
-        <input [formControl]="cursoControl" type="text" matInput />
-        <mat-error *ngFor="let error of cursoControl.errors | keyvalue">{{
-          error | controlErrorMessages
-        }}</mat-error>
-      </mat-form-field>
-    </div>
-
+    <mat-form-field appearance="fill">
+      <mat-label>Curso a inscribirse</mat-label>
+      <mat-select matSelect [formControl]="cursoControl" required>
+        <mat-option>--</mat-option>
+        <mat-option *ngFor="let curso of cursos" [value]="curso">
+          {{ curso.nombre }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="cursoControl.hasError('required')"
+        >Elija un curso</mat-error
+      >
+    </mat-form-field>
     <!-- CONTROL DE ALUMNO -->
-
-    <div class="col-12 field">
-      <mat-form-field class="w-full">
-        <mat-label>Alumno</mat-label>
-        <input [formControl]="alumnoControl" type="text" matInput />
-        <mat-error *ngFor="let error of cursoControl.errors | keyvalue">{{
-          error | controlErrorMessages
-        }}</mat-error>
-      </mat-form-field>
-    </div>
-    <!-- CONTROL DE FECHA DE INICIO -->
-    <div class="col-6">
-      <div>
-        <mat-form-field class="w-full">
-          <mat-label>Fecha de Inscripción</mat-label>
-          <input
-            [formControl]="fechaControl"
-            matInput
-            [matDatepicker]="fechaInicioPicker"
-          />
-          <mat-hint>DD/MM/YYYY</mat-hint>
-          <mat-datepicker-toggle
-            matIconSuffix
-            [for]="fechaInicioPicker"
-          ></mat-datepicker-toggle>
-          <mat-datepicker #fechaInicioPicker></mat-datepicker>
-        </mat-form-field>
-      </div>
-    </div>
-
-    <div mat-dialog-actions>
-      <button mat-button mat-dialog-close>Cancelar</button>
-      <button (click)="guardar()" mat-button>Guardar</button>
-    </div>
+    <mat-form-field appearance="fill">
+      <mat-label>Alumno a inscribir</mat-label>
+      <mat-select matSelect [formControl]="alumnoControl" required>
+        <mat-option>--</mat-option>
+        <mat-option *ngFor="let alumno of alumnos" [value]="alumno">
+          {{ alumno.nombre }} {{ alumno.apellido }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="cursoControl.hasError('required')"
+        >Elija un alumno</mat-error
+      >
+    </mat-form-field>
   </form>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <button (click)="guardar()" mat-button>Guardar</button>
 </div>

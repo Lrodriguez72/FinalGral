@@ -5,10 +5,9 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 @Component({
   selector: 'app-abm-alumnos',
   templateUrl: './abm-alumnos.component.html',
-  styleUrls: ['./abm-alumnos.component.scss']
+  styleUrls: ['./abm-alumnos.component.scss'],
 })
 export class AbmAlumnosComponent {
-
   nombreControl = new FormControl('', [Validators.required]);
   apellidoControl = new FormControl('', [Validators.required]);
 
@@ -19,7 +18,7 @@ export class AbmAlumnosComponent {
 
   constructor(
     private dialogRef: MatDialogRef<AbmAlumnosComponent>,
-    @Inject(MAT_DIALOG_DATA) private data: any,
+    @Inject(MAT_DIALOG_DATA) private data: any
   ) {
     if (data) {
       this.nombreControl.setValue(data.alumnoParaEditar.nombre);
@@ -27,10 +26,9 @@ export class AbmAlumnosComponent {
     }
   }
 
-
   guardar(): void {
     if (this.alumnosForm.valid) {
-      this.dialogRef.close(this.alumnosForm.value)
+      this.dialogRef.close(this.alumnosForm.value);
     } else {
       this.alumnosForm.markAllAsTouched();
     }
