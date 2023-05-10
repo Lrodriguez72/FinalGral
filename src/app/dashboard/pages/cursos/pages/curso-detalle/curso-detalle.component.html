@@ -1,7 +1,7 @@
-<h1>Para el curso: {{ curso?.nombre }}</h1>
-<h1>El listado de inscriptos es:</h1>
+<h3>Para el curso: {{ curso?.nombre }}</h3>
+<h3>El listado de inscriptos es:</h3>
 <div *ngFor="let inscripcion of inscripciones">
   <div>
-    <h2>{{ inscripcion.alumno.nombre }} {{ inscripcion.alumno.apellido }}</h2>
+    <h3>{{ inscripcion.alumno.nombre }} {{ inscripcion.alumno.apellido }}</h3>
   </div>
 </div>

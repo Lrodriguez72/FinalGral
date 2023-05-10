@@ -48,6 +48,13 @@ import { AdminGuard } from '../auth/guards/admin.guard';
             (m) => m.InscripcionesModule
           ),
       },
+      {
+        path: 'usuarios',
+        loadChildren: () =>
+          import('./pages/usuarios/usuarios.module').then(
+            (m) => m.UsuariosModule
+          ),
+      },
     ]),
   ],
   exports: [DashboardComponent],
