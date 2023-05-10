@@ -50,6 +50,7 @@ import { AdminGuard } from '../auth/guards/admin.guard';
       },
       {
         path: 'usuarios',
+        canActivate: [AdminGuard],
         loadChildren: () =>
           import('./pages/usuarios/usuarios.module').then(
             (m) => m.UsuariosModule

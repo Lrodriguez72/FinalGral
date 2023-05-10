@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
   CanActivate,
+  Router,
   RouterStateSnapshot,
   UrlTree,
 } from '@angular/router';
@@ -12,7 +13,7 @@ import { AuthService } from '../services/auth.service';
   providedIn: 'root',
 })
 export class AdminGuard implements CanActivate {
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -25,16 +26,11 @@ export class AdminGuard implements CanActivate {
     //obtengo el usuario autenticado para conocer sus propiedades
     // y en el map verifico su rol
     // (la interface de Usuario se encuentra en Index.ts)
+
     return this.authService.obtenerUsuarioAutenticado().pipe(
       map((usuarioAutenticado) => {
-        if (usuarioAutenticado?.role !== 'admin') {
-          alert('Usted no tiene permiso');
-          return false;
-        } else {
-          return true;
-        }
+        return usuarioAutenticado?.role === 'admin';
       })
     );
-    // return true;
   }
 }
