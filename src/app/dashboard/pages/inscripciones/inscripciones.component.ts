@@ -48,24 +48,22 @@ export class InscripcionesComponent implements OnInit {
   crearInscripcion(): void {
     const dialog = this.matDialog.open(AbmInscripcionesComponent);
 
-    //el afterClosed es un Observable, por lo tanto, me suscribo
+    // el afterClosed es un Observable, por lo tanto, me suscribo
 
-    // dialog.afterClosed().subscribe((valor) => {
-    //   //el valor permite agregar el curso en el Servicio
-    //   //verifico que el form contenga un valor, que no haya sido cancelado
-    //   if (valor) {
-    //     this.dataSource.data = [
-    //       ...this.dataSource.data,
-    //       // AGREGANDO NUEVO ELEMENTO:
-    //       {
-    //         ...valor, // { nombre: 'xxxxxx', fecha_inicio: 'xxxxx' }
-    //         fecha_inicio: new Date(),
-    //         fecha_fin: new Date(),
-    //         id: this.dataSource.data.length + 1,
-    //       },
-    //     ];
-    //   }
-    // });
+    dialog.afterClosed().subscribe((valor) => {
+      if (valor) {
+        this.dataSource.data = [
+          ...this.dataSource.data,
+
+          {
+            ...valor,
+            fecha: new Date(),
+
+            id: this.dataSource.data.length + 1,
+          },
+        ];
+      }
+    });
   }
 
   aplicarFiltros(ev: Event): void {

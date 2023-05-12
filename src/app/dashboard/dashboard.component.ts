@@ -1,6 +1,6 @@
 import { Component, OnDestroy } from '@angular/core';
 import { enviroment } from 'src/environments/environments';
-import { AuthService } from '../core/services/auth.service';
+import { AuthService } from '../auth/services/auth.service';
 import { Usuario } from '../core/models';
 
 import {

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -15,6 +15,11 @@ import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
 import { HttpClientModule } from '@angular/common/http';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+//al instalar ngrx se importa:
+import { StoreModule } from '@ngrx/store';
+//al instalar las dev tools:
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { actionReducerMap } from './store';
 
 @NgModule({
   declarations: [AppComponent],
@@ -31,6 +36,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatFormFieldModule,
     MatInputModule,
     MatOptionModule,
+    //al instalar ngrx se carga, para la configuración inicial:
+    StoreModule.forRoot(actionReducerMap, {}),
+    //al instalar las dev tools:
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
   ],
   providers: [],
   bootstrap: [AppComponent],
