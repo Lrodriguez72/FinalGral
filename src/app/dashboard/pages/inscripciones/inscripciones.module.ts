@@ -19,6 +19,10 @@ import { InscripcionesComponent } from './inscripciones.component';
 import { AbmInscripcionesComponent } from './abm-inscripciones/abm-inscripciones.component';
 import { RouterModule } from '@angular/router';
 import { MatSelectModule } from '@angular/material/select';
+import { EffectsModule } from '@ngrx/effects';
+import { InscripcionesEffects } from './store/inscripciones.effects';
+import { inscripcionesFeature } from './store/inscripciones.reducer';
+import { StoreModule } from '@ngrx/store';
 
 @NgModule({
   declarations: [InscripcionesComponent, AbmInscripcionesComponent],
@@ -37,6 +41,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatOptionModule,
     MatNativeDateModule,
     MatSelectModule,
+    StoreModule.forFeature(inscripcionesFeature),
+    EffectsModule.forFeature([InscripcionesEffects]),
 
     RouterModule.forChild([
       {
@@ -45,6 +51,8 @@ import { MatSelectModule } from '@angular/material/select';
         component: InscripcionesComponent,
       },
     ]),
+
+    EffectsModule.forFeature([InscripcionesEffects]),
   ],
 })
 export class InscripcionesModule {}

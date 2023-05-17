@@ -3,31 +3,36 @@
   <form class="grid formgrid" [formGroup]="inscripcionesForm">
     <!-- CONTROL DE CURSO -->
 
-    <mat-form-field appearance="fill">
-      <mat-label>Curso a inscribirse</mat-label>
-      <mat-select matSelect [formControl]="cursoControl" required>
-        <mat-option>--</mat-option>
-        <mat-option *ngFor="let curso of cursos" [value]="curso">
-          {{ curso.nombre }}
-        </mat-option>
-      </mat-select>
-      <mat-error *ngIf="cursoControl.hasError('required')"
-        >Elija un curso</mat-error
-      >
-    </mat-form-field>
+    <div class="col-12 field">
+      <mat-form-field class="w-full">
+        <mat-label>Curso a inscribirse</mat-label>
+        <mat-select matSelect [formControl]="cursoControl" required>
+          <mat-option>--</mat-option>
+          <mat-option *ngFor="let curso of cursos" [value]="curso.id">
+            {{ curso.nombre }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="cursoControl.hasError('required')"
+          >Elija un curso</mat-error
+        >
+      </mat-form-field>
+    </div>
+
     <!-- CONTROL DE ALUMNO -->
-    <mat-form-field appearance="fill">
-      <mat-label>Alumno a inscribir</mat-label>
-      <mat-select matSelect [formControl]="alumnoControl" required>
-        <mat-option>--</mat-option>
-        <mat-option *ngFor="let alumno of alumnos" [value]="alumno">
-          {{ alumno.nombre }} {{ alumno.apellido }}
-        </mat-option>
-      </mat-select>
-      <mat-error *ngIf="cursoControl.hasError('required')"
-        >Elija un alumno</mat-error
-      >
-    </mat-form-field>
+    <div class="col-12 field">
+      <mat-form-field class="w-full">
+        <mat-label>Alumno a inscribir</mat-label>
+        <mat-select matSelect [formControl]="alumnoControl" required>
+          <mat-option>--</mat-option>
+          <mat-option *ngFor="let alumno of alumnos" [value]="alumno.id">
+            {{ alumno.nombre }} {{ alumno.apellido }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="cursoControl.hasError('required')"
+          >Elija un alumno</mat-error
+        >
+      </mat-form-field>
+    </div>
   </form>
 </div>
 

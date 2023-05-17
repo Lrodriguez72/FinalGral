@@ -26,6 +26,15 @@
       "token": "12gg345tt343fdfdfsfsfsf",
       "role": "admin",
       "id": 8
+    },
+    {
+      "nombre": "Josue",
+      "apellido": "Baez",
+      "email": "josue@mail.com",
+      "password": "676767",
+      "token": "12gg345tt343fdfdfsfsfsf",
+      "role": "admin",
+      "id": 9
     }
   ],
   "cursos": [
@@ -46,6 +55,104 @@
       "nombre": "Desarrollo Web",
       "fecha_fin": "2023-04-27T01:27:59.631Z",
       "fecha_inicio": "2023-04-27T01:27:59.631Z"
+    }
+  ],
+  "inscripciones": [
+    {
+      "id": 1,
+      "alumno": {
+        "id": 1,
+        "nombre": "Lisa",
+        "apellido": "Simpson",
+        "fecha_registro": "7/3/2023"
+      },
+      "curso": {
+        "id": 1,
+        "nombre": "React",
+        "fecha_fin": "10/3/2023",
+        "fecha_inicio": "2/4/2023"
+      },
+      "fechaInscripcion": "7/3/2023"
+    },
+    {
+      "id": 2,
+      "alumno": {
+        "id": 1,
+        "nombre": "Lisa",
+        "apellido": "Simpson",
+        "fecha_registro": "11/4/2023"
+      },
+      "curso": {
+        "id": 1,
+        "nombre": "React",
+        "fecha_fin": "18/4/2023",
+        "fecha_inicio": "18/6/2023"
+      },
+      "fechaInscripcion": "14/4/2023"
+    },
+    {
+      "id": 3,
+      "curso": {
+        "id": 1,
+        "nombre": "Angular",
+        "fecha_fin": "2023-05-15T15:16:20.784Z",
+        "fecha_inicio": "2023-05-15T15:16:20.784Z"
+      },
+      "alumno": {
+        "id": 1,
+        "nombre": "Lisa",
+        "apellido": "Simpson",
+        "fecha_registro": "2023-05-15T15:16:20.784Z"
+      },
+      "fechaInscripcion": "2023-05-15T15:16:25.521Z"
+    },
+    {
+      "id": 55,
+      "curso": {
+        "id": 2,
+        "nombre": "Javascript",
+        "fecha_fin": "2023-05-15T21:23:42.398Z",
+        "fecha_inicio": "2023-05-15T21:23:42.398Z"
+      },
+      "alumno": {
+        "id": 5,
+        "nombre": "Maggie",
+        "apellido": "Simpson",
+        "fecha_registro": "2023-05-15T21:23:42.398Z"
+      },
+      "fechaInscripcion": "2023-05-15T21:40:58.514Z"
+    },
+    {
+      "id": 94,
+      "curso": {
+        "id": 2,
+        "nombre": "Javascript",
+        "fecha_fin": "2023-05-15T21:23:42.398Z",
+        "fecha_inicio": "2023-05-15T21:23:42.398Z"
+      },
+      "alumno": {
+        "id": 4,
+        "nombre": "Marge",
+        "apellido": "Simpson",
+        "fecha_registro": "2023-05-15T21:23:42.398Z"
+      },
+      "fechaInscripcion": "2023-05-15T21:51:32.595Z"
+    },
+    {
+      "id": 24,
+      "curso": {
+        "id": 3,
+        "nombre": "Desarrollo Web",
+        "fecha_fin": "2023-05-15T22:11:00.029Z",
+        "fecha_inicio": "2023-05-15T22:11:00.029Z"
+      },
+      "alumno": {
+        "id": 4,
+        "nombre": "Marge",
+        "apellido": "Simpson",
+        "fecha_registro": "2023-05-15T22:11:00.029Z"
+      },
+      "fechaInscripcion": "2023-05-15T22:11:54.419Z"
     }
   ]
 }

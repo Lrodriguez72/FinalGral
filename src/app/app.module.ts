@@ -20,6 +20,7 @@ import { StoreModule } from '@ngrx/store';
 //al instalar las dev tools:
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { actionReducerMap } from './store';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [AppComponent],
@@ -40,6 +41,7 @@ import { actionReducerMap } from './store';
     StoreModule.forRoot(actionReducerMap, {}),
     //al instalar las dev tools:
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
+    EffectsModule.forRoot([]),
   ],
   providers: [],
   bootstrap: [AppComponent],

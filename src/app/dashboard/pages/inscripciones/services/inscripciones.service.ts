@@ -3,6 +3,9 @@ import { BehaviorSubject, map, Observable, take } from 'rxjs';
 import { Inscripcion } from 'src/app/core/models/cursos-alumnos';
 import { Alumno } from '../../alumnos/models';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { HttpClient } from '@angular/common/http';
+import { enviroment } from 'src/environments/environments';
+import { InscripcionNormalizada, InscripcionWithAll } from '../models';
 
 import { Curso } from '../../cursos/models';
 
@@ -52,7 +55,9 @@ export class InscripcionesServiceService {
 
   constructor(
     private alumnoService: AlumnosService,
-    cursoServicio: CursosService
+    cursoServicio: CursosService,
+    //agregado para uso de la API:
+    private httpClient: HttpClient
   ) {}
 
   inscribirAlumnoACurso(alumno: Alumno, curso: Curso) {
@@ -134,5 +139,33 @@ export class InscripcionesServiceService {
     });
 
     return this.inscripciones$.asObservable();
+  }
+
+  //según modificac en modelo E-R con inscripciones con IdCurso e IdAlumno
+  // armo el objeto que necesito , antes de enviar los datos a la API
+  PostInscripciones(idCurso: number, idAlumno: number): Observable<Object> {
+    const inscription: Inscripcion = {
+      id: Math.ceil(Math.random() * 100),
+      curso: CURSOS_MOCKS.find((c) => c.id == idCurso)!,
+      alumno: ALUMNOS_MOCKS.find((a) => a.id == idAlumno)!,
+      fechaInscripcion: new Date(),
+    };
+
+    return this.httpClient.post<Object>(
+      `${enviroment.apiBaseUrl}/inscripciones/ `,
+      inscription
+    );
+  }
+
+  getAllInscripciones(): Observable<InscripcionWithAll[]> {
+    return this.httpClient.get<InscripcionWithAll[]>(
+      `${enviroment.apiBaseUrl}/inscriptions?_expand=course&_expand=student&_expand=subject`
+    );
+  }
+
+  deleteInscripcionById(id: number): Observable<unknown> {
+    return this.httpClient.delete(
+      `${enviroment.apiBaseUrl}/inscriptions/${id}`
+    );
   }
 }

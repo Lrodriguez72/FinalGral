@@ -9,6 +9,8 @@ import { Curso } from '../../cursos/models';
 import { Alumno } from '../../alumnos/models';
 import { CursosService } from '../../cursos/services/cursos.service';
 import { AlumnosService } from '../../alumnos/services/alumnos.service';
+import { Inscripcion } from '../models';
+import { InscripcionesServiceService } from '../services/inscripciones.service';
 
 @Component({
   selector: 'app-abm-inscripciones',
@@ -31,8 +33,10 @@ export class AbmInscripcionesComponent {
   constructor(
     private dialogRef: MatDialogRef<AbmInscripcionesComponent>,
     @Inject(MAT_DIALOG_DATA) private data: any,
+
     private cursosService: CursosService,
-    private alumnosService: AlumnosService
+    private alumnosService: AlumnosService,
+    private inscripcionesService: InscripcionesServiceService
   ) {
     this.cursosService.obtenerCursos().subscribe((success: Curso[]) => {
       this.cursos = success;
@@ -49,8 +53,26 @@ export class AbmInscripcionesComponent {
   }
 
   guardar(): void {
+    this.inscripcionesService
+      .PostInscripciones(
+        parseInt(this.cursoControl.value!),
+        parseInt(this.alumnoControl.value!)
+      )
+      .subscribe((response) => {
+        console.log(response);
+      });
+
     if (this.inscripcionesForm.valid) {
-      //al cerrar el diálogo emito el valor del formulario que será observado en el inscripcion.component.ts
+      //al cerrar el diálogo emito el valor del formulario que será observado en el curso.component.ts
+      this.inscripcionesService.PostInscripciones(
+        parseInt(this.cursoControl.value!),
+        parseInt(this.alumnoControl.value!)
+      );
+      // .subscribe((response) => {
+      //   console.log(response);
+      // });
+
+      // this.inscripcionesService.PostInscripciones(this.cursoControl.get('cursoControl'))
       this.dialogRef.close(this.inscripcionesForm.value);
     } else {
       this.inscripcionesForm.markAllAsTouched();
