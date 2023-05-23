@@ -1,3 +1,8 @@
+# LOGIN SEGUN ROL
+
+Para logearse como 'admin' usar estos datos: "email": "josue@mail.com", "password": "676767",
+Para logearse como 'user' usar estos datos: "email": "pablo@email.com", "password": "123456"
+
 # Dashboard
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.2.

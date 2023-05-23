@@ -5,6 +5,7 @@ import { Observable, EMPTY, of } from 'rxjs';
 import { InscripcionesActions } from './inscripciones.actions';
 import { InscripcionesServiceService } from '../services/inscripciones.service';
 
+///////////////////////////
 @Injectable()
 export class InscripcionesEffects {
   createInscripcion$ = createEffect(() => {

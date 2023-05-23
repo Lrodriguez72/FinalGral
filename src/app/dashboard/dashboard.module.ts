@@ -13,7 +13,6 @@ import { AlumnosComponent } from './pages/alumnos/alumnos.component';
 import { AlumnoDetalleComponent } from './pages/alumnos/pages/alumno-detalle/alumno-detalle.component';
 import { CursosComponent } from './pages/cursos/cursos.component';
 import { InscripcionesModule } from './pages/inscripciones/inscripciones.module';
-import { AbmInscripcionesComponent } from './pages/inscripciones/abm-inscripciones/abm-inscripciones.component';
 
 import { AdminGuard } from '../auth/guards/admin.guard';
 

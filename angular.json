@@ -114,6 +114,7 @@
   "cli": {
     "analytics": false,
     "schematicCollections": [
+      "@ngrx/schematics",
       "@ngrx/schematics"
     ]
   }
