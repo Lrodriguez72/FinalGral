@@ -10,13 +10,13 @@ const links: NavItem[] = [
     path: 'alumnos',
     title: 'Alumnos',
     icon: 'person',
-    allowedRoles: ['admin', 'user'],
+    allowedRoles: [],
   },
   {
     path: 'cursos',
     title: 'Cursos',
     icon: 'school',
-    allowedRoles: ['admin', 'user'],
+    allowedRoles: ['admin'],
   },
   {
     path: 'inscripciones',
@@ -28,7 +28,7 @@ const links: NavItem[] = [
     path: 'usuarios',
     title: 'Usuarios',
     icon: 'face',
-    allowedRoles: ['admin'],
+    allowedRoles: [],
   },
 ];
 
