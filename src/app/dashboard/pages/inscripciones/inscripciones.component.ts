@@ -31,14 +31,14 @@ export class InscripcionesComponent implements OnInit {
     private matDialog: MatDialog
   ) {
     this.inscripcionesService
-      .getInscripciones()
+      .getAllInscripciones()
       .subscribe((res: Inscripcion[]) => {
         this.inscripciones = res;
       });
   }
 
   ngOnInit(): void {
-    this.inscripcionesService.getInscripciones().subscribe({
+    this.inscripcionesService.getAllInscripciones().subscribe({
       next: (inscripciones) => {
         this.dataSource.data = inscripciones;
       },
@@ -72,7 +72,7 @@ export class InscripcionesComponent implements OnInit {
   }
 
   eliminarInscripcion(insc: Inscripcion): void {
-    this.inscripcionesService.eliminarInscripcion(insc.id);
+    this.inscripcionesService.deleteInscripcionById(insc.id);
   }
 
   editarInscripcion(inscripcionParaEditar: Inscripcion): void {

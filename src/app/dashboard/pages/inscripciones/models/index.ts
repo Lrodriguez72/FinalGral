@@ -1,26 +1,31 @@
 import { Alumno } from '../../alumnos/models';
 import { Curso } from '../../cursos/models';
 
-export interface Inscripcion {
+export interface InscripcionAnterior {
   id: number;
   curso: Curso;
   alumno: Alumno;
   fechaInscripcion: Date;
 }
 
-export interface InscripcionNormalizada {
+export interface Inscripcion {
   id: number;
   cursoId: number;
   alumnoId: number;
   fechaInscripcion: Date;
 }
 
-export interface InscripcionWithStudent extends InscripcionNormalizada {
+export interface InscripcionWithStudent extends Inscripcion {
   alumno: Alumno;
 }
 
-export interface InscripcionWithCourse extends InscripcionNormalizada {
+export interface InscripcionWithCourse extends Inscripcion {
   curso: Curso;
+}
+
+export interface CreateInscripcionData {
+  studentId: number;
+  courseId: number;
 }
 
 export type InscripcionWithAll = InscripcionWithStudent & InscripcionWithCourse;

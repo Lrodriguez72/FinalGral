@@ -9,7 +9,11 @@ import { Curso } from '../../cursos/models';
 import { Alumno } from '../../alumnos/models';
 import { CursosService } from '../../cursos/services/cursos.service';
 import { AlumnosService } from '../../alumnos/services/alumnos.service';
-import { Inscripcion } from '../models';
+import {
+  CreateInscripcionData,
+  Inscripcion,
+  InscripcionWithAll,
+} from '../models';
 import { InscripcionesServiceService } from '../services/inscripciones.service';
 
 @Component({
@@ -53,21 +57,26 @@ export class AbmInscripcionesComponent {
   }
 
   guardar(): void {
-    this.inscripcionesService
-      .PostInscripciones(
-        parseInt(this.cursoControl.value!),
-        parseInt(this.alumnoControl.value!)
-      )
-      .subscribe((response) => {
-        console.log(response);
-      });
+    // this.inscripcionesService
+    //   .PostInscripciones(
+    //     parseInt(this.cursoControl.value!),
+    //     parseInt(this.alumnoControl.value!)
+    //   )
+    //   .subscribe((response) => {
+    //     console.log(response);
+    //   });
 
     if (this.inscripcionesForm.valid) {
+      const data: CreateInscripcionData = {
+        studentId: parseInt(this.alumnoControl.value!),
+        courseId: parseInt(this.cursoControl.value!),
+      };
       //al cerrar el diálogo emito el valor del formulario que será observado en el curso.component.ts
-      this.inscripcionesService.PostInscripciones(
-        parseInt(this.cursoControl.value!),
-        parseInt(this.alumnoControl.value!)
-      );
+      this.inscripcionesService
+        .createInscripcion(data)
+        .subscribe((data: InscripcionWithAll) => {
+          console.log(data);
+        });
       // .subscribe((response) => {
       //   console.log(response);
       // });

@@ -9,6 +9,7 @@ import { CursoDetalleComponent } from './pages/curso-detalle/curso-detalle.compo
 import { InscripcionesServiceService } from '../inscripciones/services/inscripciones.service';
 import { Alumno } from '../alumnos/models';
 import { Inscripcion } from 'src/app/core/models/cursos-alumnos';
+import { InscripcionWithAll } from '../inscripciones/models';
 
 export interface Curso {
   id: number;
@@ -91,8 +92,8 @@ export class CursosComponent implements OnInit {
       .obtenerCursoPorId(cursoId)
       .subscribe((element: Curso | undefined) => {
         this.inscripcionesService
-          .getInscipcionesDeCurso(element!.id)
-          .subscribe((res: Inscripcion[] | undefined) => {
+          .getInscriptionWithAllById(element!.id)
+          .subscribe((res: InscripcionWithAll | undefined) => {
             let inscs = res;
             const dialog = this.matDialog.open(CursoDetalleComponent, {
               //en editar envío data

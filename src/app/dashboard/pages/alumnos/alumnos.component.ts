@@ -49,24 +49,30 @@ export class AlumnosComponent {
   //   });
   // }
 
+  // irAlDetalle(alumnoId: number): void {
+  //   this.alumnosService
+  //     .obtenerAlumnoPorId(alumnoId)
+  //     .subscribe((element: Alumno | undefined) => {
+  //       this.inscripcionesService
+  //         .getInscipcionesDeAlumnos(element!.id)
+  //         .subscribe((res: Inscripcion[] | undefined) => {
+  //           let inscs = res;
+  //           const dialog = this.matDialog.open(AlumnoDetalleComponent, {
+  //             //en editar envío data
+  //             //así al recibirlo, pregunto si hay data
+  //             data: {
+  //               element,
+  //               inscs,
+  //             },
+  //           });
+  //         });
+  //     });
+  //}
+
   irAlDetalle(alumnoId: number): void {
-    this.alumnosService
-      .obtenerAlumnoPorId(alumnoId)
-      .subscribe((element: Alumno | undefined) => {
-        this.inscripcionesService
-          .getInscipcionesDeAlumnos(element!.id)
-          .subscribe((res: Inscripcion[] | undefined) => {
-            let inscs = res;
-            const dialog = this.matDialog.open(AlumnoDetalleComponent, {
-              //en editar envío data
-              //así al recibirlo, pregunto si hay data
-              data: {
-                element,
-                inscs,
-              },
-            });
-          });
-      });
+    this.router.navigate([alumnoId], {
+      relativeTo: this.activatedRoute,
+    });
   }
 
   crearAlumno(): void {
