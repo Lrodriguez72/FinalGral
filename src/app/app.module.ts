@@ -21,6 +21,7 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { actionReducerMap } from './store';
 import { EffectsModule } from '@ngrx/effects';
+import { InscripcionesEffects } from './dashboard/pages/inscripciones/store/inscripciones.effects';
 
 @NgModule({
   declarations: [AppComponent],

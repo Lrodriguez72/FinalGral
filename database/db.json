@@ -153,6 +153,11 @@
         "fecha_registro": "2023-05-15T22:11:00.029Z"
       },
       "fechaInscripcion": "2023-05-15T22:11:54.419Z"
+    },
+    {
+      "studentId": 1,
+      "courseId": 3,
+      "id": 95
     }
   ]
 }

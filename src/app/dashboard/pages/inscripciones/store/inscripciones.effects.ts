@@ -6,7 +6,9 @@ import { InscripcionesActions } from './inscripciones.actions';
 import { InscripcionesServiceService } from '../services/inscripciones.service';
 
 ///////////////////////////
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class InscripcionesEffects {
   createInscripcion$ = createEffect(() => {
     return this.actions$.pipe(
