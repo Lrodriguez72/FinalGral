@@ -5,6 +5,8 @@ import { Curso } from 'src/app/dashboard/pages/cursos/cursos.component';
 import { Subject, takeUntil } from 'rxjs';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Inscripcion } from 'src/app/core/models/cursos-alumnos';
+import { InscripcionesServiceService } from '../../../inscripciones/services/inscripciones.service';
+import { InscripcionWithAll } from '../../../inscripciones/models';
 
 @Component({
   selector: 'app-curso-detalle',
@@ -12,8 +14,8 @@ import { Inscripcion } from 'src/app/core/models/cursos-alumnos';
   styleUrls: ['./curso-detalle.component.scss'],
 })
 export class CursoDetalleComponent implements OnDestroy {
-  curso: Curso | undefined = undefined;
-  inscripciones: Inscripcion[] | undefined = undefined;
+  curso: Curso;
+  inscripciones: InscripcionWithAll[] = [];
 
   private destroyed$ = new Subject();
 
@@ -29,13 +31,25 @@ export class CursoDetalleComponent implements OnDestroy {
 
   constructor(
     private dialogRef: MatDialogRef<CursoDetalleComponent>,
+    private inscripcionesService: InscripcionesServiceService,
     @Inject(MAT_DIALOG_DATA) private data: any
   ) {
-    if (data) {
-      // console.log(data);
-      this.curso = data.element;
-      this.inscripciones = data.inscs;
-    }
+    this.curso = data;
+
+    this.inscripcionesService.getAllInscripciones().subscribe({
+      next: (res) => {
+        this.inscripciones = res.filter(
+          (a: InscripcionWithAll) => a.curso.id == this.curso?.id
+        );
+      },
+      error: (err) => console.log(err),
+    });
+
+    // if (data) {
+    //   // console.log(data);
+    //   this.curso = data.element;
+    //   this.inscripciones = data.inscs;
+    // }
   }
 
   ngOnDestroy(): void {

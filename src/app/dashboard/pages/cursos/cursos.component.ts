@@ -88,23 +88,32 @@ export class CursosComponent implements OnInit {
   }
 
   irAlDetalle(cursoId: number): void {
-    this.cursosService
-      .obtenerCursoPorId(cursoId)
-      .subscribe((element: Curso | undefined) => {
-        this.inscripcionesService
-          .getInscriptionWithAllById(element!.id)
-          .subscribe((res: InscripcionWithAll | undefined) => {
-            let inscs = res;
-            const dialog = this.matDialog.open(CursoDetalleComponent, {
-              //en editar envío data
-              //así al recibirlo, pregunto si hay data
-              data: {
-                element,
-                inscs,
-              },
-            });
-          });
-      });
+    let cursoData;
+    this.cursosService.obtenerCursoPorId(cursoId).subscribe({
+      next: (res) => (cursoData = res),
+      error: (err) => console.log(err),
+    });
+    const dialog = this.matDialog.open(CursoDetalleComponent, {
+      data: cursoData,
+    });
+
+    // this.cursosService
+    //   .obtenerCursoPorId(cursoId)
+    //   .subscribe((element: Curso | undefined) => {
+    //     this.inscripcionesService
+    //       .getInscriptionWithAllById(element!.id)
+    //       .subscribe((res: InscripcionWithAll | undefined) => {
+    //         let inscs = res;
+    //         const dialog = this.matDialog.open(CursoDetalleComponent, {
+    //           //en editar envío data
+    //           //así al recibirlo, pregunto si hay data
+    //           data: {
+    //             element,
+    //             inscs,
+    //           },
+    //         });
+    //       });
+    //   });
 
     // console.log(
     //   this.cursosService

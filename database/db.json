@@ -75,22 +75,6 @@
       "fechaInscripcion": "7/3/2023"
     },
     {
-      "id": 2,
-      "alumno": {
-        "id": 1,
-        "nombre": "Lisa",
-        "apellido": "Simpson",
-        "fecha_registro": "11/4/2023"
-      },
-      "curso": {
-        "id": 1,
-        "nombre": "React",
-        "fecha_fin": "18/4/2023",
-        "fecha_inicio": "18/6/2023"
-      },
-      "fechaInscripcion": "14/4/2023"
-    },
-    {
       "id": 3,
       "curso": {
         "id": 1,

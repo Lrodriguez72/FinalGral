@@ -70,8 +70,17 @@ export class AlumnosComponent {
   //}
 
   irAlDetalle(alumnoId: number): void {
-    this.router.navigate([alumnoId], {
+    /* this.router.navigate([alumnoId], {
       relativeTo: this.activatedRoute,
+    }); */
+
+    let alumnoData;
+    this.alumnosService.obtenerAlumnoPorId(alumnoId).subscribe({
+      next: (res) => (alumnoData = res),
+      error: (err) => console.log(err),
+    });
+    const dialog = this.matDialog.open(AlumnoDetalleComponent, {
+      data: alumnoData,
     });
   }
 

@@ -1,11 +1,14 @@
-<!-- <p>{{ alumno?.nombre }}</p>
-<p>{{ alumno?.apellido }}</p>
-<p>{{ alumno?.fecha_registro | date : "dd/MM/YYYY" }}</p> -->
-
-<h3>El alumno: {{ alumno?.nombre }} {{ alumno?.apellido }}</h3>
-<h3>Se encuentra inscripto en los siguientes cursos:</h3>
-<div *ngFor="let inscripcion of inscripciones">
-  <div>
-    <h3>{{ inscripcion }}</h3>
+<h1 mat-dialog-title>Detalle</h1>
+<div mat-dialog-content>
+  <h3>El alumno: {{ alumno.nombre }} {{ alumno.apellido }}</h3>
+  <h3>Se encuentra inscripto en los siguientes cursos:</h3>
+  <div *ngFor="let inscripcion of inscripciones">
+    <div>
+      <h3>{{ inscripcion.curso.nombre }}</h3>
+    </div>
   </div>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cerrar</button>
 </div>

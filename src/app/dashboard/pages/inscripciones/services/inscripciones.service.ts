@@ -34,13 +34,21 @@ export class InscripcionesServiceService {
 
   getAllInscripciones(): Observable<InscripcionWithAll[]> {
     return this.httpClient.get<InscripcionWithAll[]>(
-      `${enviroment.apiBaseUrl}/inscriptions?_expand=curso&_expand=alumno`
+      `${enviroment.apiBaseUrl}/inscripciones?expand=curso&expand_alumno`
+    );
+  }
+
+  getAllInscripcionesByAlumnoId(
+    alumnoId: number
+  ): Observable<InscripcionWithAll[]> {
+    return this.httpClient.get<InscripcionWithAll[]>(
+      `${enviroment.apiBaseUrl}/inscripciones/`
     );
   }
 
   deleteInscripcionById(id: number): Observable<unknown> {
     return this.httpClient.delete(
-      `${enviroment.apiBaseUrl}/inscriptions/${id}`
+      `${enviroment.apiBaseUrl}/inscripciones/${id}`
     );
   }
 
@@ -49,7 +57,7 @@ export class InscripcionesServiceService {
     actualizacion: Partial<InscripcionWithAll>
   ): Observable<InscripcionWithAll[]> {
     return this.httpClient.put<InscripcionWithAll[]>(
-      `${enviroment.apiBaseUrl}/inscriptions?_expand=curso&_expand=alumno`,
+      `${enviroment.apiBaseUrl}/inscripciones?_expand=curso&_expand=alumno`,
       actualizacion
     );
   }
