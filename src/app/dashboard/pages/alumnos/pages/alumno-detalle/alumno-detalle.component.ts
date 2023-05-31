@@ -45,14 +45,23 @@ export class AlumnoDetalleComponent implements OnDestroy {
       .subscribe((alumno) => (this.alumno = alumno)); */
     this.alumno = data;
 
-    this.inscripcionesService.getAllInscripciones().subscribe({
-      next: (res) => {
-        this.inscripciones = res.filter(
-          (a: InscripcionWithAll) => a.alumno.id == this.alumno.id
-        );
-      },
-      error: (err) => console.log(err),
-    });
+    this.inscripcionesService
+      .getAllInscripcionesByAlumnoId(this.alumno.id)
+      .subscribe({
+        next: (res) => {
+          this.inscripciones = res;
+        },
+        error: (err) => console.log(err),
+      });
+
+    // this.inscripcionesService.getAllInscripciones().subscribe({
+    //   next: (res) => {
+    //     this.inscripciones = res.filter(
+    //       (a: InscripcionWithAll) => a.alumno.id == this.alumno.id
+    //     );
+    //   },
+    //   error: (err) => console.log(err),
+    // });
   }
 
   ngOnDestroy(): void {

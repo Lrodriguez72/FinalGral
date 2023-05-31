@@ -1,12 +1,12 @@
 <h1 mat-dialog-title>Detalle</h1>
 <div mat-dialog-content>
-  <h3>El alumno: {{ alumno.nombre }} {{ alumno.apellido }}</h3>
-  <h3>Se encuentra inscripto en los siguientes cursos:</h3>
-  <div *ngFor="let inscripcion of inscripciones">
-    <div>
-      <h3>{{ inscripcion.curso.nombre }}</h3>
-    </div>
-  </div>
+  <p>El alumno: {{ alumno.nombre }} {{ alumno.apellido }}</p>
+  <p>Se encuentra inscripto en los siguientes cursos:</p>
+  <ul>
+    <li *ngFor="let inscripcion of inscripciones">
+      {{ inscripcion.curso.nombre }}
+    </li>
+  </ul>
 </div>
 
 <div mat-dialog-actions>

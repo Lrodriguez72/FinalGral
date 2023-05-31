@@ -15,6 +15,7 @@ import {
   InscripcionWithAll,
 } from '../models';
 import { InscripcionesServiceService } from '../services/inscripciones.service';
+import { ContentObserver } from '@angular/cdk/observers';
 
 @Component({
   selector: 'app-abm-inscripciones',
@@ -26,7 +27,7 @@ export class AbmInscripcionesComponent {
   alumnos: Alumno[] = [];
   cursoControl = new FormControl('', [Validators.required]);
   alumnoControl = new FormControl('', [Validators.required]);
-  fechaControl = new FormControl('', [Validators.required]);
+  fechaControl = new FormControl('');
 
   inscripcionesForm = new FormGroup({
     curso: this.cursoControl,
@@ -57,32 +58,20 @@ export class AbmInscripcionesComponent {
   }
 
   guardar(): void {
-    // this.inscripcionesService
-    //   .PostInscripciones(
-    //     parseInt(this.cursoControl.value!),
-    //     parseInt(this.alumnoControl.value!)
-    //   )
-    //   .subscribe((response) => {
-    //     console.log(response);
-    //   });
-
     if (this.inscripcionesForm.valid) {
       const data: CreateInscripcionData = {
-        studentId: parseInt(this.alumnoControl.value!),
-        courseId: parseInt(this.cursoControl.value!),
+        alumnoId: parseInt(this.alumnoControl.value!),
+        cursoId: parseInt(this.cursoControl.value!),
       };
       //al cerrar el diálogo emito el valor del formulario que será observado en el curso.component.ts
-      this.inscripcionesService
-        .createInscripcion(data)
-        .subscribe((data: InscripcionWithAll) => {
-          console.log(data);
-        });
-      // .subscribe((response) => {
-      //   console.log(response);
-      // });
+      this.inscripcionesService.createInscripcion(data).subscribe((data) => {
+        console.log(data);
+        this.dialogRef.close(data);
+      });
 
       // this.inscripcionesService.PostInscripciones(this.cursoControl.get('cursoControl'))
-      this.dialogRef.close(this.inscripcionesForm.value);
+      //this.dialogRef.close(this.inscripcionesForm.value);
+      //this.dialogRef.close(valor);
     } else {
       this.inscripcionesForm.markAllAsTouched();
     }

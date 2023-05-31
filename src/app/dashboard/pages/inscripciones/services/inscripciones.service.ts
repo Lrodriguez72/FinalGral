@@ -34,7 +34,7 @@ export class InscripcionesServiceService {
 
   getAllInscripciones(): Observable<InscripcionWithAll[]> {
     return this.httpClient.get<InscripcionWithAll[]>(
-      `${enviroment.apiBaseUrl}/inscripciones?expand=curso&expand_alumno`
+      `${enviroment.apiBaseUrl}/inscripciones?expand=alumno&expand=curso`
     );
   }
 
@@ -42,7 +42,7 @@ export class InscripcionesServiceService {
     alumnoId: number
   ): Observable<InscripcionWithAll[]> {
     return this.httpClient.get<InscripcionWithAll[]>(
-      `${enviroment.apiBaseUrl}/inscripciones/`
+      `${enviroment.apiBaseUrl}/inscripciones?alumno.id=${alumnoId}`
     );
   }
 

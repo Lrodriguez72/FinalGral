@@ -59,22 +59,6 @@
   ],
   "inscripciones": [
     {
-      "id": 1,
-      "alumno": {
-        "id": 1,
-        "nombre": "Lisa",
-        "apellido": "Simpson",
-        "fecha_registro": "7/3/2023"
-      },
-      "curso": {
-        "id": 1,
-        "nombre": "React",
-        "fecha_fin": "10/3/2023",
-        "fecha_inicio": "2/4/2023"
-      },
-      "fechaInscripcion": "7/3/2023"
-    },
-    {
       "id": 3,
       "curso": {
         "id": 1,

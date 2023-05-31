@@ -24,8 +24,8 @@ export interface InscripcionWithCourse extends Inscripcion {
 }
 
 export interface CreateInscripcionData {
-  studentId: number;
-  courseId: number;
+  alumnoId: number;
+  cursoId: number;
 }
 
 export type InscripcionWithAll = InscripcionWithStudent & InscripcionWithCourse;
