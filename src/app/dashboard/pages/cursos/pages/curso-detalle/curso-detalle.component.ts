@@ -7,6 +7,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Inscripcion } from 'src/app/core/models/cursos-alumnos';
 import { InscripcionesServiceService } from '../../../inscripciones/services/inscripciones.service';
 import { InscripcionWithAll } from '../../../inscripciones/models';
+import { AlumnosService } from '../../../alumnos/services/alumnos.service';
+import { Alumno } from '../../../alumnos/models';
 
 @Component({
   selector: 'app-curso-detalle',
@@ -16,6 +18,7 @@ import { InscripcionWithAll } from '../../../inscripciones/models';
 export class CursoDetalleComponent implements OnDestroy {
   curso: Curso;
   inscripciones: InscripcionWithAll[] = [];
+  alumnos: Alumno[] = [];
 
   private destroyed$ = new Subject();
 
@@ -32,6 +35,8 @@ export class CursoDetalleComponent implements OnDestroy {
   constructor(
     private dialogRef: MatDialogRef<CursoDetalleComponent>,
     private inscripcionesService: InscripcionesServiceService,
+    private cursosService: CursosService,
+    private alumnosService: AlumnosService,
     @Inject(MAT_DIALOG_DATA) private data: any
   ) {
     this.curso = data;
@@ -39,8 +44,16 @@ export class CursoDetalleComponent implements OnDestroy {
     this.inscripcionesService.getAllInscripciones().subscribe({
       next: (res) => {
         this.inscripciones = res.filter(
-          (a: InscripcionWithAll) => a.curso.id == this.curso?.id
+          (a: InscripcionWithAll) => a.cursoId == this.curso.id
         );
+
+        this.inscripciones.forEach((insc) => {
+          this.alumnosService
+            .obtenerAlumnoPorId(insc.alumnoId)
+            .subscribe((response: Alumno | undefined) => {
+              this.alumnos.push(response!);
+            });
+        });
       },
       error: (err) => console.log(err),
     });

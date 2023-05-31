@@ -3,8 +3,11 @@
   <p>En el curso: {{ curso.nombre }}</p>
   <p>El listado de inscriptos es:</p>
   <ul>
-    <li *ngFor="let inscripcion of inscripciones">
+    <!-- <li *ngFor="let inscripcion of inscripciones">
       {{ inscripcion.alumno.nombre }} {{ inscripcion.alumno.apellido }}
+    </li> -->
+    <li *ngFor="let alumno of alumnos">
+      {{ alumno.nombre }} {{ alumno.apellido }}
     </li>
   </ul>
 </div>

@@ -16,11 +16,11 @@ export interface Inscripcion {
 }
 
 export interface InscripcionWithStudent extends Inscripcion {
-  alumno: Alumno;
+  alumno: Alumno | null;
 }
 
 export interface InscripcionWithCourse extends Inscripcion {
-  curso: Curso;
+  curso: Curso | null;
 }
 
 export interface CreateInscripcionData {

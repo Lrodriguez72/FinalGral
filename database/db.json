@@ -59,68 +59,29 @@
   ],
   "inscripciones": [
     {
+      "id": 1,
+      "alumnoId": 1,
+      "cursoId": 1
+    },
+    {
+      "id": 2,
+      "alumnoId": 2,
+      "cursoId": 2
+    },
+    {
       "id": 3,
-      "curso": {
-        "id": 1,
-        "nombre": "Angular",
-        "fecha_fin": "2023-05-15T15:16:20.784Z",
-        "fecha_inicio": "2023-05-15T15:16:20.784Z"
-      },
-      "alumno": {
-        "id": 1,
-        "nombre": "Lisa",
-        "apellido": "Simpson",
-        "fecha_registro": "2023-05-15T15:16:20.784Z"
-      },
-      "fechaInscripcion": "2023-05-15T15:16:25.521Z"
+      "alumnoId": 3,
+      "cursoId": 3
     },
     {
-      "id": 55,
-      "curso": {
-        "id": 2,
-        "nombre": "Javascript",
-        "fecha_fin": "2023-05-15T21:23:42.398Z",
-        "fecha_inicio": "2023-05-15T21:23:42.398Z"
-      },
-      "alumno": {
-        "id": 5,
-        "nombre": "Maggie",
-        "apellido": "Simpson",
-        "fecha_registro": "2023-05-15T21:23:42.398Z"
-      },
-      "fechaInscripcion": "2023-05-15T21:40:58.514Z"
+      "id": 4,
+      "alumnoId": 1,
+      "cursoId": 3
     },
     {
-      "id": 94,
-      "curso": {
-        "id": 2,
-        "nombre": "Javascript",
-        "fecha_fin": "2023-05-15T21:23:42.398Z",
-        "fecha_inicio": "2023-05-15T21:23:42.398Z"
-      },
-      "alumno": {
-        "id": 4,
-        "nombre": "Marge",
-        "apellido": "Simpson",
-        "fecha_registro": "2023-05-15T21:23:42.398Z"
-      },
-      "fechaInscripcion": "2023-05-15T21:51:32.595Z"
-    },
-    {
-      "id": 24,
-      "curso": {
-        "id": 3,
-        "nombre": "Desarrollo Web",
-        "fecha_fin": "2023-05-15T22:11:00.029Z",
-        "fecha_inicio": "2023-05-15T22:11:00.029Z"
-      },
-      "alumno": {
-        "id": 4,
-        "nombre": "Marge",
-        "apellido": "Simpson",
-        "fecha_registro": "2023-05-15T22:11:00.029Z"
-      },
-      "fechaInscripcion": "2023-05-15T22:11:54.419Z"
+      "alumnoId": 5,
+      "cursoId": 1,
+      "id": 5
     }
   ]
 }

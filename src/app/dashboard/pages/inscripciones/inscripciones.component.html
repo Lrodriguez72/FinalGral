@@ -1,17 +1,3 @@
-<!-- {{ inscripcion?.alumno?.nombre }} {{ inscripcion?.curso?.nombre }} -->
-<!-- <div *ngFor="let insc of inscripciones">
-  <div>
-    <h2>Curso : {{ insc.curso.nombre }} - Alumno: {{ insc.alumno.nombre }}</h2>
-  </div>
-</div> -->
-
-<!-- <div class="mb-3">
-  <button (click)="crearInscripcion()" color="primary" mat-flat-button>
-    <mat-icon>add</mat-icon>
-    Agregar Curso
-  </button>
-</div> -->
-
 <mat-form-field class="w-full">
   <mat-label>Buscar</mat-label>
   <input
@@ -65,9 +51,9 @@
   <ng-container matColumnDef="detalle">
     <th mat-header-cell *matHeaderCellDef>Detalle</th>
     <td mat-cell *matCellDef="let inscripcion">
-      <!-- <button mat-icon-button (click)="irAlDetalle(inscripcion.id)">
+      <button mat-icon-button (click)="irAlDetalle(inscripcion.id)">
         <mat-icon>visibility</mat-icon>
-      </button> -->
+      </button>
     </td>
   </ng-container>
 

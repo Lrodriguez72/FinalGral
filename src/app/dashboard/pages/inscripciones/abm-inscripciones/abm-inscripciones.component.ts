@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatOption } from '@angular/material/core';
@@ -22,7 +22,7 @@ import { ContentObserver } from '@angular/cdk/observers';
   templateUrl: './abm-inscripciones.component.html',
   styleUrls: ['./abm-inscripciones.component.scss'],
 })
-export class AbmInscripcionesComponent {
+export class AbmInscripcionesComponent implements OnInit, OnDestroy {
   cursos: Curso[] = [];
   alumnos: Alumno[] = [];
   cursoControl = new FormControl('', [Validators.required]);
@@ -30,10 +30,18 @@ export class AbmInscripcionesComponent {
   fechaControl = new FormControl('');
 
   inscripcionesForm = new FormGroup({
-    curso: this.cursoControl,
-    alumno: this.alumnoControl,
+    cursoId: this.cursoControl,
+    alumnoId: this.alumnoControl,
     fecha: this.fechaControl,
   });
+
+  selectedCursoControl = new FormControl<Curso | null>(null);
+
+  AlumnoIdControl = new FormControl<number | null>(null, [Validators.required]);
+
+  courseIdControl = new FormControl<number | null>(null, [Validators.required]);
+
+  destroyed$: any;
 
   constructor(
     private dialogRef: MatDialogRef<AbmInscripcionesComponent>,
@@ -57,6 +65,34 @@ export class AbmInscripcionesComponent {
     }
   }
 
+  ngOnDestroy(): void {
+    // this.destroyed$.next();
+    // this.destroyed$.complete();
+  }
+
+  ngOnInit(): void {
+    this.cursosService.obtenerCursos().subscribe({
+      next: (res) => {
+        this.cursos = res;
+      },
+    });
+    this.alumnosService.obtenerAlumnos().subscribe({
+      next: (res) => {
+        this.alumnos = res;
+      },
+    });
+  }
+
+  // onSave(): void {
+  //   this.store.dispatch(
+  //     InscripcionesActions.createInscripcion({
+  //       data: this.incripcionesForm.value as CreateInscripcionData,
+  //     })
+  //   );
+
+  //   this.dialogRef.close();
+  // }
+
   guardar(): void {
     if (this.inscripcionesForm.valid) {
       const data: CreateInscripcionData = {
@@ -65,7 +101,6 @@ export class AbmInscripcionesComponent {
       };
       //al cerrar el diálogo emito el valor del formulario que será observado en el curso.component.ts
       this.inscripcionesService.createInscripcion(data).subscribe((data) => {
-        console.log(data);
         this.dialogRef.close(data);
       });
 
