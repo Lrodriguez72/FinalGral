@@ -31,7 +31,7 @@ export const CURSOS_MOCKS: Curso[] = [
   providedIn: 'root',
 })
 export class CursosService {
-  private cursos$ = new BehaviorSubject<Curso[]>(CURSOS_MOCKS);
+  private cursos$ = new BehaviorSubject<Curso[]>([]);
 
   constructor(private httpClient: HttpClient) {}
 

@@ -1,3 +1,27 @@
+<!-- <p *ngIf="(state$ | async)?.loading; else ifNotLoading">CARGANDO DATA...</p>
+
+<ng-template #ifNotLoading>
+  <ul>
+    <li *ngFor="let inscripcion of (state$ | async)?.inscripciones">
+      {{ inscripcion.id }}
+      {{ inscripcion.cursoId }}
+      {{ inscripcion.alumnoId }}
+      {{ inscripcion.curso?.nombre }}
+      {{ inscripcion.alumno?.nombre }}
+      {{ inscripcion.alumno?.apellido }}
+
+      <button
+        (click)="eliminarInscripcionPorId(inscripcion.id)"
+        mat-icon-button
+        color="warn"
+        type="button"
+      >
+        <mat-icon>delete</mat-icon>
+      </button>
+    </li>
+  </ul>
+</ng-template> -->
+
 <mat-form-field class="w-full">
   <mat-label>Buscar</mat-label>
   <input
@@ -16,7 +40,8 @@
   </button>
 </div>
 
-<table mat-table [dataSource]="dataSource">
+<p *ngIf="(state$ | async)?.loading">CARGANDO DATA...</p>
+<table [hidden]="(state$ | async)?.loading" mat-table [dataSource]="dataSource">
   <!-- Id Column -->
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef>Id</th>

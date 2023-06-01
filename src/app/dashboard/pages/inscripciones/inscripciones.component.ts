@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Inscripcion } from 'src/app/core/models/cursos-alumnos';
 import { InscripcionesServiceService } from './services/inscripciones.service';
@@ -9,7 +9,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { State } from './store/inscripciones.reducer';
 import { InscripcionesActions } from './store/inscripciones.actions';
 import { selectInscripcionesState } from './store/inscripciones.selectors';
-import { Observable } from 'rxjs';
+import { async, Observable, Subject } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { InscripcionWithAll } from './models';
 import { CursosService } from '../cursos/services/cursos.service';
@@ -22,14 +22,15 @@ import { Alumno } from '../alumnos/models';
   templateUrl: './inscripciones.component.html',
   styleUrls: ['./inscripciones.component.scss'],
 })
-export class InscripcionesComponent implements OnInit {
+export class InscripcionesComponent implements OnInit, OnDestroy {
   dataSource = new MatTableDataSource<InscripcionWithAll>();
   // inscripciones: Inscripcion[] = [];
   state$: Observable<State>;
   inscripciones: InscripcionWithAll[] = [];
-  // movies$: Observable<Movie[]> = this.store.select(state => state.movies);
 
-  displayedColumns = [
+  private destroyed$ = new Subject();
+
+  displayedColumns: string[] = [
     'id',
     'curso',
     'nombreCompleto',
@@ -45,59 +46,20 @@ export class InscripcionesComponent implements OnInit {
     private cursosService: CursosService,
     private alumnosService: AlumnosService
   ) {
-    // this.inscripcionesService
-    //   .getAllInscripciones()
-    //   .subscribe((res: Inscripcion[]) => {
-    //     this.inscripciones = res;
-    //   });
     this.state$ = this.store.select(selectInscripcionesState);
-    this.store.dispatch(InscripcionesActions.loadInscripciones());
-
-    this.state$.subscribe((res) => {
-      if (res.inscripciones.length > 0) {
-        res.inscripciones.forEach((insc) => {
-          // OBTENGO EL CURSO Y LO AGREGO AL OBJETO INSCRIPCION
-          this.cursosService
-            .obtenerCursoPorId(insc.cursoId)
-            .subscribe((response: Curso | undefined) => {
-              let elementToAdd: InscripcionWithAll = {
-                id: 1,
-                cursoId: 1,
-                alumnoId: 2,
-                fechaInscripcion: new Date(),
-                curso: null,
-                alumno: null,
-              };
-              elementToAdd.curso = response!;
-              // OBTENGO EL ALUMNO Y LO AGREGO AL OBJETO INSCRIPCION
-              this.alumnosService
-                .obtenerAlumnoPorId(insc.alumnoId)
-                .subscribe((response: Alumno | undefined) => {
-                  elementToAdd.alumno = response!;
-                  this.inscripciones.push(elementToAdd);
-                });
-            });
-        });
-      }
-    });
-
-    setTimeout(() => {
-      this.dataSource.data = this.inscripciones;
-    }, 1700);
-    // this.dataSource = [...this.dataSource];
   }
 
   ngOnInit(): void {
-    // this.dataSource.data = this.inscripciones;
-  }
+    // await this.state$.forEach( (v) => {  })
 
-  // ngOnInit(): void {
-  //   this.inscripcionesService.getAllInscripciones().subscribe({
-  //     next: (inscripciones) => {
-  //       this.dataSource.data = inscripciones;
-  //     },
-  //   });
-  // }
+    this.store.dispatch(InscripcionesActions.loadInscripciones());
+    this.state$.subscribe((res) => {
+      console.log('aca');
+      this.dataSource.data = res.inscripciones;
+    });
+
+    // this.dataSource.data
+  }
 
   crearInscripcion(): void {
     const dialog = this.matDialog.open(AbmInscripcionesComponent);
@@ -106,14 +68,7 @@ export class InscripcionesComponent implements OnInit {
 
     dialog.afterClosed().subscribe((valor) => {
       if (valor) {
-        // this.dataSource.data = [
-        //   ...this.dataSource.data,
-        //   {
-        //     ...valor,
-        //     fecha: new Date(),
-        //     id: this.dataSource.data.length + 1,
-        //   },
-        // ];
+        this.store.dispatch(InscripcionesActions.loadInscripciones());
       }
     });
   }
@@ -150,5 +105,9 @@ export class InscripcionesComponent implements OnInit {
 
   eliminarInscripcionPorId(id: number): void {
     this.store.dispatch(InscripcionesActions.deleteInscripcion({ id }));
+  }
+
+  ngOnDestroy(): void {
+    this.destroyed$.next(true);
   }
 }

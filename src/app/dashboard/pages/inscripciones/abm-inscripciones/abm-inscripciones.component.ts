@@ -101,7 +101,17 @@ export class AbmInscripcionesComponent implements OnInit, OnDestroy {
       };
       //al cerrar el diálogo emito el valor del formulario que será observado en el curso.component.ts
       this.inscripcionesService.createInscripcion(data).subscribe((data) => {
-        this.dialogRef.close(data);
+        this.alumnosService
+          .obtenerAlumnoPorId(data.alumnoId)
+          .subscribe((success) => {
+            const newData = {
+              alumnoId: data.alumnoId,
+              cursoId: data.cursoId,
+              curso: data.curso,
+              alumno: success,
+            };
+            this.dialogRef.close(newData);
+          });
       });
 
       // this.inscripcionesService.PostInscripciones(this.cursoControl.get('cursoControl'))

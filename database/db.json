@@ -37,6 +37,38 @@
       "id": 9
     }
   ],
+  "alumnos": [
+    {
+      "id": 1,
+      "nombre": "Lisa",
+      "apellido": "Simpson",
+      "fecha_registro": "Thu Jun 01 2023 12:06:57 GMT-0300"
+    },
+    {
+      "id": 2,
+      "nombre": "Bart",
+      "apellido": "Simpson",
+      "fecha_registro": "Thu Jun 01 2023 12:06:57 GMT-0300"
+    },
+    {
+      "id": 3,
+      "nombre": "Homero",
+      "apellido": "Simpson",
+      "fecha_registro": "Thu Jun 01 2023 12:06:57 GMT-0300"
+    },
+    {
+      "id": 4,
+      "nombre": "Marge",
+      "apellido": "Simpson",
+      "fecha_registro": "Thu Jun 01 2023 12:06:57 GMT-0300"
+    },
+    {
+      "id": 5,
+      "nombre": "Maggie",
+      "apellido": "Simpson",
+      "fecha_registro": "Thu Jun 01 2023 12:06:57 GMT-0300"
+    }
+  ],
   "cursos": [
     {
       "id": 1,
@@ -59,21 +91,6 @@
   ],
   "inscripciones": [
     {
-      "id": 1,
-      "alumnoId": 1,
-      "cursoId": 1
-    },
-    {
-      "id": 2,
-      "alumnoId": 2,
-      "cursoId": 2
-    },
-    {
-      "id": 3,
-      "alumnoId": 3,
-      "cursoId": 3
-    },
-    {
       "id": 4,
       "alumnoId": 1,
       "cursoId": 3
@@ -82,6 +99,71 @@
       "alumnoId": 5,
       "cursoId": 1,
       "id": 5
+    },
+    {
+      "alumnoId": 5,
+      "cursoId": 2,
+      "id": 6
+    },
+    {
+      "alumnoId": 2,
+      "cursoId": 1,
+      "id": 7
+    },
+    {
+      "alumnoId": 5,
+      "cursoId": 3,
+      "id": 8
+    },
+    {
+      "alumnoId": 1,
+      "cursoId": 2,
+      "id": 14
+    },
+    {
+      "alumnoId": 2,
+      "cursoId": 1,
+      "id": 15
+    },
+    {
+      "alumnoId": 5,
+      "cursoId": 3,
+      "id": 16
+    },
+    {
+      "alumnoId": 1,
+      "cursoId": 1,
+      "id": 17
+    },
+    {
+      "alumnoId": 2,
+      "cursoId": 2,
+      "id": 18
+    },
+    {
+      "alumnoId": 2,
+      "cursoId": 2,
+      "id": 19
+    },
+    {
+      "alumnoId": 3,
+      "cursoId": 2,
+      "id": 20
+    },
+    {
+      "alumnoId": 4,
+      "cursoId": 3,
+      "id": 21
+    },
+    {
+      "alumnoId": 3,
+      "cursoId": 2,
+      "id": 22
+    },
+    {
+      "alumnoId": 1,
+      "cursoId": 2,
+      "id": 23
     }
   ]
 }

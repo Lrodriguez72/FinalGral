@@ -34,7 +34,7 @@ export class InscripcionesServiceService {
 
   getAllInscripciones(): Observable<InscripcionWithAll[]> {
     return this.httpClient.get<InscripcionWithAll[]>(
-      `${enviroment.apiBaseUrl}/inscripciones?expand=alumno&expand=curso`
+      `${enviroment.apiBaseUrl}/inscripciones?_expand=alumno&_expand=curso`
     );
   }
 
