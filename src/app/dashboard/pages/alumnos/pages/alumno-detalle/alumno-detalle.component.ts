@@ -22,15 +22,6 @@ export class AlumnoDetalleComponent implements OnDestroy {
 
   private destroyed$ = new Subject();
 
-  // (
-
-  //   if (data) {
-  //     // console.log(data);
-  //     this.curso = data.element;
-  //     this.inscripciones = data.inscs;
-  //   }
-  // }
-
   constructor(
     private activatedRoute: ActivatedRoute,
     private alumnosService: AlumnosService,
@@ -44,31 +35,8 @@ export class AlumnoDetalleComponent implements OnDestroy {
       this.inscripciones = data.inscs;
     }
 
-    // this.alumnosService
-    //   .obtenerAlumnoPorId(parseInt(this.activatedRoute.snapshot.params['id']))
-    //   .pipe(takeUntil(this.destroyed$))
-    //   .subscribe((alumno) => (this.alumno = alumno)); */
-
     this.alumno = data;
 
-    // this.inscripcionesService
-    //   .getAllInscripcionesByAlumnoId(this.alumno.id)
-    //   .subscribe({
-    //     next: (res) => {
-    //       this.inscripciones = res;
-    //     },
-    //     error: (err) => console.log(err),
-    //   });
-
-    // this.inscripcionesService.getAllInscripciones().subscribe({
-    //   next: (res) => {
-    //     this.inscripciones = res.filter((a: InscripcionWithAll) => {
-    //       a.alumnoId == this.alumno.id;
-    //       console.log(a);
-    //     });
-    //   },
-    //   error: (err) => console.log(err),
-    // });
     this.inscripcionesService.getAllInscripciones().subscribe({
       next: (res) => {
         this.inscripciones = res.filter(

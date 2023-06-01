@@ -22,16 +22,6 @@ export class CursoDetalleComponent implements OnDestroy {
 
   private destroyed$ = new Subject();
 
-  // constructor(
-  //   private activatedRoute: ActivatedRoute,
-  //   private cursosService: CursosService
-  // ) {
-  //   this.cursosService
-  //     .obtenerCursoPorId(parseInt(this.activatedRoute.snapshot.params['id']))
-  //     .pipe(takeUntil(this.destroyed$))
-  //     .subscribe((curso) => (this.curso = curso));
-  // }
-
   constructor(
     private dialogRef: MatDialogRef<CursoDetalleComponent>,
     private inscripcionesService: InscripcionesServiceService,
@@ -57,12 +47,6 @@ export class CursoDetalleComponent implements OnDestroy {
       },
       error: (err) => console.log(err),
     });
-
-    // if (data) {
-    //   // console.log(data);
-    //   this.curso = data.element;
-    //   this.inscripciones = data.inscs;
-    // }
   }
 
   ngOnDestroy(): void {

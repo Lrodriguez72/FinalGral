@@ -95,8 +95,6 @@ export class CursosService {
 
         this.cursos$.next(cursosActualizados);
       },
-      //complete: () => {},
-      //error: () => {}
     });
 
     return this.cursos$.asObservable();

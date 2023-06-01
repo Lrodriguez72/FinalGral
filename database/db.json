@@ -26,15 +26,6 @@
       "token": "12gg345tt343fdfdfsfsfsf",
       "role": "admin",
       "id": 8
-    },
-    {
-      "nombre": "Josue",
-      "apellido": "Baez",
-      "email": "josue@mail.com",
-      "password": "676767",
-      "token": "12gg345tt343fdfdfsfsfsf",
-      "role": "admin",
-      "id": 9
     }
   ],
   "alumnos": [
@@ -91,79 +82,24 @@
   ],
   "inscripciones": [
     {
-      "id": 4,
+      "id": 1,
       "alumnoId": 1,
-      "cursoId": 3
-    },
-    {
-      "alumnoId": 5,
-      "cursoId": 1,
-      "id": 5
-    },
-    {
-      "alumnoId": 5,
-      "cursoId": 2,
-      "id": 6
-    },
-    {
-      "alumnoId": 2,
-      "cursoId": 1,
-      "id": 7
-    },
-    {
-      "alumnoId": 5,
-      "cursoId": 3,
-      "id": 8
-    },
-    {
-      "alumnoId": 1,
-      "cursoId": 2,
-      "id": 14
-    },
-    {
-      "alumnoId": 2,
-      "cursoId": 1,
-      "id": 15
-    },
-    {
-      "alumnoId": 5,
-      "cursoId": 3,
-      "id": 16
-    },
-    {
-      "alumnoId": 1,
-      "cursoId": 1,
-      "id": 17
+      "cursoId": 1
     },
     {
       "alumnoId": 2,
       "cursoId": 2,
-      "id": 18
-    },
-    {
-      "alumnoId": 2,
-      "cursoId": 2,
-      "id": 19
+      "id": 2
     },
     {
       "alumnoId": 3,
-      "cursoId": 2,
-      "id": 20
-    },
-    {
-      "alumnoId": 4,
       "cursoId": 3,
-      "id": 21
-    },
-    {
-      "alumnoId": 3,
-      "cursoId": 2,
-      "id": 22
+      "id": 3
     },
     {
       "alumnoId": 1,
       "cursoId": 2,
-      "id": 23
+      "id": 4
     }
   ]
 }

@@ -69,7 +69,6 @@ export class AuthService {
             //almaceno en el localstorage el token del usuario para verificar y mantener sesión
             localStorage.setItem('token', usuarioAutenticado.token);
 
-            //console.log('se almacena token');
             this.establecerUsuarioAutenticado(
               usuarioAutenticado,
               usuarioAutenticado.token

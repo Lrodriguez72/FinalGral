@@ -22,7 +22,6 @@ export class UsuarioDetalleComponent implements OnDestroy {
     @Inject(MAT_DIALOG_DATA) private data: any
   ) {
     if (data) {
-      console.log(data);
       this.usuario = data;
     }
   }

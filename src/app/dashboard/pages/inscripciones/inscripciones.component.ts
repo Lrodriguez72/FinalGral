@@ -34,7 +34,6 @@ export class InscripcionesComponent implements OnInit, OnDestroy {
     'id',
     'curso',
     'nombreCompleto',
-    'fechaInscripcion',
     'detalle',
     'editar',
     'eliminar',
@@ -54,7 +53,6 @@ export class InscripcionesComponent implements OnInit, OnDestroy {
 
     this.store.dispatch(InscripcionesActions.loadInscripciones());
     this.state$.subscribe((res) => {
-      console.log('aca');
       this.dataSource.data = res.inscripciones;
     });
 

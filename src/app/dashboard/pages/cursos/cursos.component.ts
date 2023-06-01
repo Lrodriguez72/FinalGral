@@ -96,30 +96,6 @@ export class CursosComponent implements OnInit {
     const dialog = this.matDialog.open(CursoDetalleComponent, {
       data: cursoData,
     });
-
-    // this.cursosService
-    //   .obtenerCursoPorId(cursoId)
-    //   .subscribe((element: Curso | undefined) => {
-    //     this.inscripcionesService
-    //       .getInscriptionWithAllById(element!.id)
-    //       .subscribe((res: InscripcionWithAll | undefined) => {
-    //         let inscs = res;
-    //         const dialog = this.matDialog.open(CursoDetalleComponent, {
-    //           //en editar envío data
-    //           //así al recibirlo, pregunto si hay data
-    //           data: {
-    //             element,
-    //             inscs,
-    //           },
-    //         });
-    //       });
-    //   });
-
-    // console.log(
-    //   this.cursosService
-    //     .obtenerCursoPorId(cursoId)
-    //     .subscribe((elements) => )
-    // );
   }
 
   eliminarCurso(curso: Curso): void {
@@ -146,8 +122,4 @@ export class CursosComponent implements OnInit {
       });
     }
   }
-
-  // ngOnDestroy(): void {
-  //   this.cursosService.obtenerCursos().unsuscribe();
-  // }
 }
