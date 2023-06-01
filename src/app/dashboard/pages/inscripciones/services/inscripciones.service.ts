@@ -61,30 +61,4 @@ export class InscripcionesServiceService {
       actualizacion
     );
   }
-  //   editarInscripcion(
-  //     inscripcionId: number,
-  //     actualizacion: Partial<Inscripcion>
-  //   ): Observable<Inscripcion[]> {
-  //     this.inscripciones$.pipe(take(1)).subscribe({
-  //       next: (inscripciones) => {
-  //         const inscripcionesActualizados = inscripciones.map((inscripcion) => {
-  //           if (inscripcion.id === inscripcionId) {
-  //             return {
-  //               ...inscripcion,
-  //               ...actualizacion,
-  //             };
-  //           } else {
-  //             return inscripcion;
-  //           }
-  //         });
-
-  //         this.inscripciones$.next(inscripcionesActualizados);
-  //       },
-  //       //complete: () => {},
-  //       //error: () => {}
-  //     });
-
-  //     return this.inscripciones$.asObservable();
-  //   }
-  // }
 }
